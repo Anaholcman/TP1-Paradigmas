@@ -13,3 +13,5 @@ capacityL :: Link -> Int
 capacityL (Lin city1 city2 calidad) = capacityQ calidad
 delayL :: Link -> Float     -- la demora que sufre una conexion en este canal
 delayL (Lin city1 city2 calidad) = delayQ calidad
+
+connectsT city1 city2 conections = foldr (\conection conections -> (||) linksL city1 city2 link ) False
