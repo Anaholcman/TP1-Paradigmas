@@ -4,7 +4,7 @@ module Point ( Point, newP, difP)
 data Point = Poi Int Int deriving (Eq, Show)
 
 newP :: Int -> Int -> Point
-newP coordx coordy = Poi a b
+newP = Poi
 
 difP :: Point -> Point -> Float  -- distancia absoluta
-difP (Poi x1 y2) (Poi x1 y2) = sqrt ((x1-x2)**2 + (y1-y2)**2)
+difP (Poi coordx1 coordy1) (Poi coordx2 coordy2) = sqrt (fromIntegral( (coordx1 - coordx2) * (coordx1 - coordx2) + ( coordy1 - coordy2 ) * ( coordy1 - coordy2 )))

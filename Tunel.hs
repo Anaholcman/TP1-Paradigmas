@@ -13,4 +13,5 @@ connectsT city1 city2 (conection) = (connection <- connections | linksL city1 ci
 connectsT city1 city2 conections = foldr (\conection conections -> (||) linksL city1 city2 link ) False
 
 usesT :: Link -> Tunel -> Bool  -- indica si este tunel atraviesa ese link
+
 delayT :: Tunel -> Float -- la demora que sufre una conexion en este tunel

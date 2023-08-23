@@ -1,12 +1,11 @@
-module PointlinksL ( Point, newP, difP)   where
-module City ( City, newC, nameC, distanceC )   where
-module Quality ( Quality, newQ, capacityQ, delayQ )   where
-module Link ( Link, newL, , connectsL, capacityL, delayL )   where
-module Tunel ( Tunel, newT, connectsT, usesT, delayT )   where
-
-
 module Region ( Region, newR, foundR, linkR, tunelR, pathR, linksForR, connectedR, linkedR, delayR, availableCapacityForR, usedCapacityForR )
    where
+
+import Point ( Point, newP, difP)
+import City ( City, newC, nameC, distanceC ) 
+import Quality ( Quality, newQ, capacityQ, delayQ )
+import Link ( Link, newL, linksL, connectsL, capacityL, delayL )
+import Tunel ( Tunel, newT, connectsT, usesT, delayT )      
 
 data Region = Reg [City] [Link] [Tunel]
 
