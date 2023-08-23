@@ -1,6 +1,6 @@
 module Tunel ( Tunel, newT, connectsT, usesT, delayT )
    where
-
+   
 import Point (Point, newP, difP)
 import Quality (Quality, newQ, capacityQ, delayQ )
 import City ( City, newC, nameC, distanceC )

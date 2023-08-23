@@ -69,3 +69,4 @@ delayR :: Region -> City -> City -> Float -- dadas dos ciudades conectadas, indi
 availableCapacityForR :: Region -> City -> City -> Int -- indica la capacidad disponible entre dos ciudades
 
 
+
