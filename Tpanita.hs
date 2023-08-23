@@ -14,6 +14,7 @@ module Point ( Point, newP, difP)
 data Point = Poi Int Int deriving (Eq, Show)
 
 newP :: Int -> Int -> Point
+newP coordx coordy = Poi coordx coordy
 difP :: Point -> Point -> Float  -- distancia absoluta
 -----------------
 module City ( City, newC, nameC, distanceC )
@@ -22,8 +23,11 @@ module City ( City, newC, nameC, distanceC )
 data City = Cit String Point deriving (Eq, Show)
 
 newC :: String -> Point -> City
+newC name location = Cit name location
 nameC :: City -> String
+--- NO ENTIENDO QUE QUIERE!! 
 distanceC :: City -> City -> Float
+distanceC citya cityb = sqrt (Point citya) - sqrt (Point cityb)
 -----------------
 module Quality ( Quality, newQ, capacityQ, delayQ )
    where
@@ -67,6 +71,5 @@ connectedR :: Region -> City -> City -> Bool -- indica si estas dos ciudades est
 linkedR :: Region -> City -> City -> Bool -- indica si estas dos ciudades estan enlazadas
 delayR :: Region -> City -> City -> Float -- dadas dos ciudades conectadas, indica la demora
 availableCapacityForR :: Region -> City -> City -> Int -- indica la capacidad disponible entre dos ciudades
-
 
 
