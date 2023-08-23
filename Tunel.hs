@@ -9,7 +9,7 @@ import Link ( Link, newL, linksL, connectsL, capacityL, delayL )
 data Tunel = Tun [Link] deriving (Eq, Show)
 
 newT :: [Link] -> Tunel
-newT [tunnel] = Tun [tunnel]
+newT [links] = Tun [links]
 
 
 connectsT :: City -> City -> Tunel -> Bool -- inidca si este tunel conceta estas dos ciudades distintas
@@ -22,10 +22,10 @@ esExtremo city links = foldr (\link fold -> (connectada link && not fold)|| (not
 
 usesT :: Link -> Tunel -> Bool  -- indica si este tunel atraviesa ese link
 usesT link [] = False
-usesT link (tunnel : tunnels) 
+usesT link (tunnel : links) 
    | link == tunnel = True
-   | otherwise = usesT link tunnels --no se si en este caso hay que poner = tunnel tunnels
+   | otherwise = usesT link links --no se si en este caso hay que poner = tunnel tunnels
 
 
 delayT :: Tunel -> Float -- la demora que sufre una conexion en este tunel
-delayT Tun [] -- NOSEEEEE
+delayT links = foldr ( (+).delayL ) 0.0 links
