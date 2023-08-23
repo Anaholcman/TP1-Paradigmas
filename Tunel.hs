@@ -11,12 +11,14 @@ data Tunel = Tun [Link] deriving (Eq, Show)
 newT :: [Link] -> Tunel
 newT [tunnel] = Tun [tunnel]
 
+
 connectsT :: City -> City -> Tunel -> Bool -- inidca si este tunel conceta estas dos ciudades distintas
-connectsT city1 city2 tunnel 
-   |(head tunnel == city1 && last tunnel == city2)|| (head tunnel == city2 && last tunnel city1) = True
-   |otherwise = False
+connectsT city1 city2 (Tun tunnel) = (esExtremo city1 tunnel) && (esExtremo city2 tunnel)
 --{ dadas dos ciudades esta función da si si las ciudades son los extremos del túnel }
 
+esExtremo :: City -> [ Links ] -> Bool
+esExtremo city links = foldr (\link fold -> (connectada link && not fold)|| (not (connectada link) && fold)) false links
+   where connectada = connectsL city
 
 usesT :: Link -> Tunel -> Bool  -- indica si este tunel atraviesa ese link
 usesT link [] = False
