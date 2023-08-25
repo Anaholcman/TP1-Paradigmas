@@ -9,6 +9,7 @@ data Link = Lin City City Quality deriving (Eq, Show)
 
 newL :: City -> City -> Quality -> Link -- genera un link entre dos ciudades distintas
 newL = Lin
+--newL city1 city2 calidad = Lin city1 city2 calidad
 
 connectsL :: City -> Link -> Bool   -- indica si esta ciudad es parte de este link
 connectsL iscity (Lin city1 city2 calidad) = iscity == city1 || iscity == city2
