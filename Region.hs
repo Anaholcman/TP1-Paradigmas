@@ -50,4 +50,8 @@ delayR :: Region -> City -> City -> Float -- dadas dos ciudades conectadas, indi
 delayR _ _ _ = 0.0
 
 availableCapacityForR :: Region -> City -> City -> Int -- indica la capacidad disponible entre dos ciudades
-availableCapacityForR _ _ _ = 0
+availableCapacityForR (Reg citiesReg linksReg tunelsReg) city1 city2 =  capacidadlinks - capacidadtuneles
+   where 
+      link = linkentre linksReg city1 city2
+      capacidadlinks = capacityL link
+      capacidadtuneles = foldr (\tun acc -> if usesT link tun then acc + 1 else acc) 0 tunelsReg 
