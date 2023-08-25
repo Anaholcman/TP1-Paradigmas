@@ -13,8 +13,11 @@ newR :: Region
 newR = Reg [] [] []
 
 foundR :: Region -> City -> Region -- agrega una nueva ciudad a la región
-foundR (Reg citiesReg linksReg tunelsReg) newcity = if notElem newcity citiesReg then Reg ( newcity : citiesReg ) linksReg tunelsReg else error "Ya existe esa ciudad"
+foundR region@(Reg citiesReg linksReg tunelsReg) newcity = if cityValida region newcity then Reg ( newcity : citiesReg ) linksReg tunelsReg --else error "Ya existe esa ciudad"
 --hay que ver que no este en el mismo lugar que otra ciudad
+
+cityValida :: Region -> City -> Bool
+cityValida (Reg citiesReg linksReg tunelsReg) newcity = notElem newcity citiesReg && (foldr (\cityR -> (&&).( (nameC cityR /= nameC newcity) && (distanceC cityR newcity /= 0) ) ) True citiesReg)
 
 linkR :: Region -> City -> City -> Quality -> Region -- enlaza dos ciudades de la región con un enlace de la calidad indicada
 linkR (Reg citiesReg linksReg tunelsReg) city1 city2 calidad = Reg citiesReg ( newL city1 city2 calidad : linksReg) tunelsReg 
@@ -32,11 +35,13 @@ linksentre region [] = []
 
 --linksentre region@(Reg citiesReg linksReg tunelsReg) cities = (\[city1 , city2] -> if linkedR region city1 city2 && (availableCapacityForR region city1 city2 > 0) then )
 
-linksentre region@(Reg citiesReg linksReg tunelsReg) ( city1 : ( city2 : cities)) = if linkedR region city1 city2 then [if linksL city1 city2 link then link | link <- linksReg] ++ (linksentre ( city2 : cities) region)
+-- linksentre region@(Reg citiesReg linksReg tunelsReg) ( city1 : ( city2 : cities)) = if linkedR region city1 city2 then [if linksL city1 city2 link then link | link <- linksReg] ++ (linksentre ( city2 : cities) region)
 
-linksentre region@(Reg citiesReg linksReg tunelsReg) ( city1 : ( city2 : cities)) = foldr (\ link -> (if linksL city1 city2 link then link) ) 
+-- linksentre region@(Reg citiesReg linksReg tunelsReg) ( city1 : ( city2 : cities)) = foldr (\ link -> (if linksL city1 city2 link then link) ) 
 
-linksentre ( city1 : ( city2 : cities)) linksReg = [if linksL city1 city2 link then link | link <- linksReg] ++ (linksentre ( city2 : cities) linksReg)
+-- linksentre ( city1 : ( city2 : cities)) linksReg = [if linksL city1 city2 link then link | link <- linksReg] ++ (linksentre ( city2 : cities) linksReg)
+
+linksentre region@(Reg citiesReg linksReg tunelsReg) ciudades = if esvalido region ciudades then foldr (\[city1 , city2] -> (++).[if linksL city1 city2 link then link | link <- linksReg]) [] ciudades
 -------------------
 
 ciudadespar :: [ City ] -> [ [ City ] ]
