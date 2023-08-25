@@ -17,31 +17,14 @@ foundR (Reg citiesReg linksReg tunelsReg) newcity = if notElem newcity citiesReg
 --hay que ver que no este en el mismo lugar que otra ciudad
 
 linkR :: Region -> City -> City -> Quality -> Region -- enlaza dos ciudades de la región con un enlace de la calidad indicada
-linkR (Reg citiesReg linksReg tunelsReg) city1 city2 calidad = Reg citiesReg ( newL city1 city2 calidad : linksReg) tunelsReg 
-
---revisar q las citis esten en la region
+linkR region@(Reg citiesReg linksReg tunelsReg) city1 city2 calidad = if elem city1 citiesReg && elem city2 citiesReg && not linkedR region city1 city2 then Reg citiesReg ( newL city1 city2 calidad : linksReg) tunelsReg 
 
 tunelR :: Region -> [ City ] -> Region -- genera una comunicación entre dos ciudades distintas de la región
-tunelR region@(Reg citiesReg linksReg tunelsReg) citiesT = if esvalido region (ciudadespar citiesT) then Reg citiesReg linksReg (newT (linksentre region (ciudadespar citiesT)):tunelsReg)
+tunelR region@(Reg citiesReg linksReg tunelsReg) citiesT = if esvalido region (ciudadespar citiesT) then Reg citiesReg linksReg (newT (linksentre region (ciudadespar citiesT)):tunelsReg) else error "No se puede crear este Tunel, hay ciudades que no estan entrelazadas"
 
-
-{-hay que hacer esta funcion que cumpla:
-   -generar una lista ordenada de links con capacidad de soportar otro tunel entre las ciudades
--}
 linksentre :: [ Link ] -> [ [ City ] ] -> [ Link ]
 linksentre linksReg [] = []
 linksentre linksReg ( [city1,city2] : cities) = [if linksL city1 city2 link then link | link <- linksReg] ++ (linksentre linksReg ( city2 : cities))
-
-
---linksentre region@(Reg citiesReg linksReg tunelsReg) cities = (\[city1 , city2] -> if linkedR region city1 city2 && (availableCapacityForR region city1 city2 > 0) then )
-
--- linksentre region@(Reg citiesReg linksReg tunelsReg) ( city1 : ( city2 : cities)) = if linkedR region city1 city2 then [if linksL city1 city2 link then link | link <- linksReg] ++ (linksentre ( city2 : cities) region)
-
--- linksentre region@(Reg citiesReg linksReg tunelsReg) ( city1 : ( city2 : cities)) = foldr (\ link -> (if linksL city1 city2 link then link) ) 
-
--- linksentre ( city1 : ( city2 : cities)) linksReg = [if linksL city1 city2 link then link | link <- linksReg] ++ (linksentre ( city2 : cities) linksReg)
-
---linksentre region@(Reg citiesReg linksReg tunelsReg) ciudades = if esvalido region ciudades then foldr (\[city1 , city2] -> (++).[if linksL city1 city2 link then link | link <- linksReg]) [] ciudades
 
 ciudadespar :: [ City ] -> [ [ City ] ]
 ciudadespar [ city1 , city2 ] = [[ city1 , city2 ]]
@@ -61,4 +44,5 @@ delay (Reg citiesReg city1 city2) = foldr ( (+).delayL ) 0.0 city1
 -- suma del delay de cada link
 
 availableCapacityForR :: Region -> City -> City -> Int -- indica la capacidad disponible entre dos ciudades
+availableCapacityForR _ _ _ = 0
 -- revisar todos los links existentes entre las ciudades, sumar la capacidad y restar la cantidad de tuneles que pasan
