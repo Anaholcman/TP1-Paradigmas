@@ -4,6 +4,7 @@ import Quality ( Quality, newQ, capacityQ, delayQ )
 import Data.Binary (decode)
 import Link ( Link, newL, linksL, connectsL, capacityL, delayL )
 import Tunel ( Tunel, newT, connectsT, usesT, delayT )      
+import Region ( Region, newR, foundR, linkR, tunelR, connectedR, linkedR, delayR, availableCapacityForR )
 
 punto1 = newP 5 5 
 punto2 = newP 1 2
@@ -14,6 +15,8 @@ calidad = newQ "cobre" 5 1.5
 link1 = newL ciudad1 ciudad2 calidad
 link2 = newL ciudad2 ciudad3 calidad
 tunel = newT [link1,link2]
+argentina = 
+      
 t = [ difP punto1 (newP 1 2) == 5.0 , 
       nameC ciudad1 == "BsAs"  ,
       distanceC ciudad1 ciudad2 == 5.0 , 
@@ -28,4 +31,4 @@ t = [ difP punto1 (newP 1 2) == 5.0 ,
       usesT link1 tunel, 
       True]
 
--- delayT tunel
+
