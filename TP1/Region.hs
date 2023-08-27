@@ -13,10 +13,14 @@ newR :: Region
 newR = Reg [] [] []
 
 foundR :: Region -> City -> Region -- agrega una nueva ciudad a la región
-foundR (Reg citiesReg linksReg tunelsReg) newcity = 
-   if notElem newcity citiesReg 
-      then Reg ( newcity : citiesReg ) linksReg tunelsReg 
-      else error "Ya existe esa ciudad"
+foundR (Reg citiesReg linksReg tunelsReg) newcity
+   | cityValida (Reg citiesReg linksReg tunelsReg) newcity = Reg ( newcity : citiesReg ) linksReg tunelsReg 
+   | otherwise = error "Ya existe esa ciudad"
+
+cityValida :: Region -> City -> Bool
+cityValida (Reg citiesReg _ _) newcity = 
+   notElem newcity citiesReg && 
+   foldr (\cityR fold -> fold && (nameC cityR /= nameC newcity) && (distanceC cityR newcity /= 0) )  True citiesReg
 
 linkR :: Region -> City -> City -> Quality -> Region -- enlaza dos ciudades de la región con un enlace de la calidad indicada
 linkR region@(Reg citiesReg linksReg tunelsReg) city1 city2 calidad = 
