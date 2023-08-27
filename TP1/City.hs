@@ -2,6 +2,7 @@ module City ( City, newC, nameC, distanceC )
    where
 
 import Point ( Point, newP, difP )
+import GHC.Generics (C)
 
 data City = Cit String Point deriving (Eq, Show)
 

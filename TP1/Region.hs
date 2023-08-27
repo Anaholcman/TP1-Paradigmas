@@ -19,7 +19,11 @@ foundR (Reg citiesReg linksReg tunelsReg) newcity =
       else error "Ya existe esa ciudad"
 
 linkR :: Region -> City -> City -> Quality -> Region -- enlaza dos ciudades de la región con un enlace de la calidad indicada
-linkR region@(Reg citiesReg linksReg tunelsReg) city1 city2 calidad = if elem city1 citiesReg && elem city2 citiesReg && not (linkedR region city1 city2) then Reg citiesReg ( newL city1 city2 calidad : linksReg) tunelsReg else error "No se puede crear este link, no existen las ciudades o ya existe el link"
+linkR region@(Reg citiesReg linksReg tunelsReg) city1 city2 calidad = 
+   if elem city1 citiesReg && elem city2 citiesReg && not (linkedR region city1 city2) 
+      then Reg citiesReg ( newL city1 city2 calidad : linksReg) tunelsReg 
+      else error "No se puede crear este link, no existen las ciudades o ya existe el link"
+
 
 tunelR :: Region -> [ City ] -> Region -- genera una comunicación entre dos ciudades distintas de la región
 tunelR region@(Reg citiesReg linksReg tunelsReg) citiesT = 
@@ -40,18 +44,28 @@ ciudadespar ( city1 : ( city2 : cities)) = [ city1 , city2 ] : ciudadespar ( cit
 linksvalidos :: Region -> [ [ City ] ] -> Bool
 linksvalidos region = foldr (\[city1 , city2] fold -> fold && (linkedR region city1 city2 && (availableCapacityForR region city1 city2 > 0))) True 
 
+
 connectedR :: Region -> City -> City -> Bool -- indica si estas dos ciudades estan conectadas por un tunel
 connectedR (Reg citiesReg linksReg tunelsReg) city1 city2 = foldr ((||).connectsT city1 city2) False tunelsReg
+
 
 linkedR :: Region -> City -> City -> Bool -- indica si estas dos ciudades estan enlazadas
 linkedR (Reg citiesReg linksReg tunelsReg) city1 city2 = foldr ((||).linksL city1 city2) False linksReg
 
+
 delayR :: Region -> City -> City -> Float -- dadas dos ciudades conectadas, indica la demora
-delayR _ _ _ = 0.0
+delayR (Reg citiesReg linksReg tunelsReg) city1 city2 = delayT (tunelentre tunelsReg city1 city2)
+
+tunelentre :: [ Tunel ] -> City -> City -> Tunel
+tunelentre [] _ _ = error "No existe el tunel"
+tunelentre (tunel:tunels) city1 city2 
+    | connectsT city1 city2 tunel = tunel
+    | otherwise = tunelentre tunels city1 city2 
+
 
 availableCapacityForR :: Region -> City -> City -> Int -- indica la capacidad disponible entre dos ciudades
-availableCapacityForR (Reg citiesReg linksReg tunelsReg) city1 city2 =  capacidadlinks - capacidadtuneles
+availableCapacityForR (Reg citiesReg linksReg tunelsReg) city1 city2 =  capacidadlinks - cantidadtuneles
    where 
       link = linkentre linksReg city1 city2
       capacidadlinks = capacityL link
-      capacidadtuneles = foldr (\tun acc -> if usesT link tun then acc + 1 else acc) 0 tunelsReg 
+      cantidadtuneles = foldr (\_ -> (+) 1) 0 [tunel | tunel <- tunelsReg, usesT link tunel]
