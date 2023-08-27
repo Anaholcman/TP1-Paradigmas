@@ -5,7 +5,6 @@ import Point (Point, newP, difP)
 import Quality (Quality, newQ, capacityQ, delayQ )
 import City ( City, newC, nameC, distanceC )
 import Link ( Link, newL, linksL, connectsL, capacityL, delayL )
-import GHC.Exts.Heap (GenClosure(link))
 
 data Tunel = Tun [Link] deriving (Eq, Show)
 
