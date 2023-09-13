@@ -1,7 +1,6 @@
 package prueba;
-import tp2.MyQueue;
 
-
+/*
 public class Queue {
 	private MyQueue cola;	
 	
@@ -30,4 +29,6 @@ public class Queue {
 		return cola.devuelveUltimo();
 	}
 
+	
 }
+*/

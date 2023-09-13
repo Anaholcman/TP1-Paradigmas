@@ -1,4 +1,4 @@
-package tp2;
+package TpconMyQueue;
 
 import java.util.Queue;
 import java.util.LinkedList;
