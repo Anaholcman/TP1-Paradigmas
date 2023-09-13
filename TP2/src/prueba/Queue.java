@@ -1,6 +1,5 @@
 package prueba;
 
-/*
 public class Queue {
 	private MyQueue cola;	
 	
@@ -31,4 +30,3 @@ public class Queue {
 
 	
 }
-*/

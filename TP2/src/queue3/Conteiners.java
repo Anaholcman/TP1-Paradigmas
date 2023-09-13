@@ -7,13 +7,8 @@ public abstract class Conteiners {
 
 	public abstract Conteiners saca();
 
-	public abstract int tamaño();
-	
-		// TODO Auto-generated method stub
-		
+	public abstract int tamaño();		
 
-	public Object cabecera() {
-		return this;
-	}
+	public abstract Object cabecera();
 
 }
