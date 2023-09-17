@@ -1,4 +1,4 @@
-package queue4;
+package queue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -31,7 +31,7 @@ public class QueueTest {
   }
 
   @Test public void test06QueueBehavesFIFO() {
-	Queue queue = queuewith2object();
+    Queue queue = queuewith2object();
 
     assertEquals( queue.take(), firstAddedObject );
     assertEquals( queue.take(), secondAddedObject );
