@@ -1,7 +1,7 @@
-package queue4;
+package queue;
 
 public abstract class Slots {
 
-	public abstract Object ishead();
+	public abstract Object getObject();
 	public abstract boolean estavacio();
 }

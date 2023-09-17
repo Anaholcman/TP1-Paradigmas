@@ -13,11 +13,11 @@ public class QueueTest {
   }
 
   @Test public void test02AddElementsToTheQueue() {  
-    assertFalse( new Queue().add( firstAddedObject ).isEmpty() );  
+    assertFalse( queuewith1object().isEmpty() );  
   }
   
   @Test public void test03AddedElementsIsAtHead() {  
-    assertEquals( firstAddedObject, new Queue().add( firstAddedObject ).head() );  
+    assertEquals( firstAddedObject, queuewith1object().head() );  
   }
 
   @Test public void test04TakeRemovesElementsFromTheQueue() {
