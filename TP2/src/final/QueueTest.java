@@ -8,9 +8,17 @@ import org.junit.jupiter.api.Test;
 
 public class QueueTest {
 
-  @Test public void test01QueueShouldBeEmptyWhenCreated() {  assertTrue( new Queue().isEmpty() );  }
-  @Test public void test02AddElementsToTheQueue() {  assertFalse( new Queue().add( firstAddedObject ).isEmpty() );  }
-  @Test public void test03AddedElementsIsAtHead() {  assertEquals( firstAddedObject, new Queue().add( firstAddedObject ).head() );  }
+  @Test public void test01QueueShouldBeEmptyWhenCreated() {  
+    assertTrue( new Queue().isEmpty() );    
+  }
+
+  @Test public void test02AddElementsToTheQueue() {  
+    assertFalse( new Queue().add( firstAddedObject ).isEmpty() );  
+  }
+  
+  @Test public void test03AddedElementsIsAtHead() {  
+    assertEquals( firstAddedObject, new Queue().add( firstAddedObject ).head() );  
+  }
 
   @Test public void test04TakeRemovesElementsFromTheQueue() {
     Queue queue = queuewith1object();
@@ -18,7 +26,9 @@ public class QueueTest {
     assertTrue( queue.isEmpty() );
   }
 
-  @Test public void test05TakeReturnsLastAddedObject() {  assertEquals( firstAddedObject, queuewith1object().take() ); }
+  @Test public void test05TakeReturnsLastAddedObject() {  
+    assertEquals( firstAddedObject, queuewith1object().take() ); 
+  }
 
   @Test public void test06QueueBehavesFIFO() {
 	Queue queue = queuewith2object();
@@ -28,7 +38,9 @@ public class QueueTest {
     assertTrue( queue.isEmpty() );
   }
 
-  @Test public void test07HeadReturnsFirstAddedObject() {  assertEquals( queuewith2object().head(), firstAddedObject ); }
+  @Test public void test07HeadReturnsFirstAddedObject() {  
+    assertEquals( queuewith2object().head(), firstAddedObject ); 
+  }
 
   @Test public void test08HeadDoesNotRemoveObjectFromQueue() {
     Queue queue = queuewith1object();
@@ -37,9 +49,13 @@ public class QueueTest {
     assertEquals( 1, queue.size() );
   }
 
-  @Test public void test09SizeRepresentsObjectInTheQueue() {  assertEquals( 2, queuewith2object().size() );  }
+  @Test public void test09SizeRepresentsObjectInTheQueue() {  
+    assertEquals( 2, queuewith2object().size() );  
+  }
 
-  @Test public void test10CanNotTakeWhenThereAreNoObjectsInTheQueue() {	errorifEmpty( () -> new Queue().take() );  }
+  @Test public void test10CanNotTakeWhenThereAreNoObjectsInTheQueue() {	
+    errorifEmpty( () -> new Queue().take() );  
+  }
   
   @Test public void test11CanNotTakeWhenThereAreNoObjectsInTheQueueAndTheQueueHadObjects() {
     Queue queue = queuewith1object();
@@ -47,7 +63,9 @@ public class QueueTest {
 	errorifEmpty( () -> queue.take() );
   }
 
-  @Test public void test12CanNotHeadWhenThereAreNoObjectsInTheQueue() {	errorifEmpty( () -> new Queue().head() );  }
+  @Test public void test12CanNotHeadWhenThereAreNoObjectsInTheQueue() {	
+    errorifEmpty( () -> new Queue().head() );  
+  }
   
   private String firstAddedObject = "First";
   private String secondAddedObject = "Second";

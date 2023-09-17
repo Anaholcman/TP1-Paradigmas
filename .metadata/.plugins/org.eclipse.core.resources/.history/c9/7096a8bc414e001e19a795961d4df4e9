@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module TpJAVA1 {
-	requires junit;
-}
