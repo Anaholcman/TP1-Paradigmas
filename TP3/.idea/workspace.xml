@@ -27,6 +27,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
@@ -49,7 +53,7 @@
       <updated>1696511870492</updated>
       <workItem from="1696511871614" duration="35000" />
       <workItem from="1696512147708" duration="391000" />
-      <workItem from="1696512780013" duration="261000" />
+      <workItem from="1696512780013" duration="943000" />
     </task>
     <servers />
   </component>
