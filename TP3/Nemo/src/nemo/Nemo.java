@@ -24,7 +24,31 @@ public class Nemo {
                 }
             }
             if (c == rotarIzquierda) {
-                direction= (direction+1) % 4;
+                direction = (direction+1) % 4;
+            }
+            if (c == rotarDerecha) {
+                direction = (direction-1) % 4;
+            }
+            if (c == avanzar) {
+                if (direction == north) {
+                    location[1]++;
+                }
+                if (direction == east) {
+                    location[0]++;
+                }
+                if (direction == south) {
+                    location[1]--;
+                }
+                if (direction == west) {
+                    location[0]--;
+                }
+            }
+            if (c == liberarCapsula) {
+                if (depth <=1) {
+                    continue;
+                } else {
+                    throw new RuntimeException("No se puede liberar la capsula");
+                }
             }
         }
     }
@@ -32,9 +56,9 @@ public class Nemo {
 
 
     public int north = 1;
-    public int south = 2;
-    public int east = 3;
-    public int west = 4;
+    public int east = 2;
+    public int south = 3;
+    public int west = 0;
 
     public char decender = 'd';
     public char ascender = 'u';
