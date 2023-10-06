@@ -25,24 +25,116 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "11",
-    "last_opened_file_path": "/Users/anitaholcman/Documents/GitHub/TPS-Ostrovsky-Holcman/TP3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/anitaholcman/Documents/GitHub/TPS-Ostrovsky-Holcman/TP3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="JUnit.TestNemo.test08FallaTirarCapsula">
+    <configuration name="TestNemo.test05rotarIzquierda" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TPNemo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="nemo" />
+      <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
+      <option name="METHOD_NAME" value="test05rotarIzquierda" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestNemo.test06avanzar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TPNemo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="nemo" />
+      <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
+      <option name="METHOD_NAME" value="test06avanzar" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestNemo.test07avanzar2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TPNemo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="nemo" />
+      <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
+      <option name="METHOD_NAME" value="test07avanzar2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestNemo.test08FallaTirarCapsula" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TPNemo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="nemo" />
+      <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
+      <option name="METHOD_NAME" value="test08FallaTirarCapsula" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestNemo.test08TirarCapsula" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TPNemo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="nemo" />
+      <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
+      <option name="METHOD_NAME" value="test08TirarCapsula" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestNemo.test08FallaTirarCapsula" />
+        <item itemvalue="JUnit.TestNemo.test08TirarCapsula" />
+        <item itemvalue="JUnit.TestNemo.test07avanzar2" />
+        <item itemvalue="JUnit.TestNemo.test06avanzar" />
+        <item itemvalue="JUnit.TestNemo.test05rotarIzquierda" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -53,7 +145,10 @@
       <updated>1696511870492</updated>
       <workItem from="1696511871614" duration="35000" />
       <workItem from="1696512147708" duration="391000" />
-      <workItem from="1696512780013" duration="943000" />
+      <workItem from="1696512780013" duration="1432000" />
+      <workItem from="1696602461732" duration="175000" />
+      <workItem from="1696602645224" duration="278000" />
+      <workItem from="1696603640567" duration="4950000" />
     </task>
     <servers />
   </component>
