@@ -44,55 +44,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.TestNemo.test08FallaTirarCapsula">
-    <configuration name="TestNemo.test05rotarIzquierda" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TPNemo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="nemo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="nemo" />
-      <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
-      <option name="METHOD_NAME" value="test05rotarIzquierda" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestNemo.test06avanzar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TPNemo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="nemo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="nemo" />
-      <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
-      <option name="METHOD_NAME" value="test06avanzar" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestNemo.test07avanzar2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TPNemo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="nemo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="nemo" />
-      <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
-      <option name="METHOD_NAME" value="test07avanzar2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.TestNemo.test10ascensoSinLimitacion">
     <configuration name="TestNemo.test08FallaTirarCapsula" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TPNemo" />
       <extension name="coverage">
@@ -109,7 +61,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestNemo.test08TirarCapsula" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestNemo.test09girar1veces" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TPNemo" />
       <extension name="coverage">
         <pattern>
@@ -119,7 +71,55 @@
       </extension>
       <option name="PACKAGE_NAME" value="nemo" />
       <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
-      <option name="METHOD_NAME" value="test08TirarCapsula" />
+      <option name="METHOD_NAME" value="test09girar1veces" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestNemo.test09girar2veces" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TPNemo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="nemo" />
+      <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
+      <option name="METHOD_NAME" value="test09girar2veces" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestNemo.test10ascensoSinLimitacion" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TPNemo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="nemo" />
+      <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
+      <option name="METHOD_NAME" value="test10ascensoSinLimitacion" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestNemo.test10girarYVolver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TPNemo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="nemo" />
+      <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
+      <option name="METHOD_NAME" value="test10girarYVolver" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -127,11 +127,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestNemo.test10ascensoSinLimitacion" />
+        <item itemvalue="JUnit.TestNemo.test10girarYVolver" />
+        <item itemvalue="JUnit.TestNemo.test09girar1veces" />
+        <item itemvalue="JUnit.TestNemo.test09girar2veces" />
         <item itemvalue="JUnit.TestNemo.test08FallaTirarCapsula" />
-        <item itemvalue="JUnit.TestNemo.test08TirarCapsula" />
-        <item itemvalue="JUnit.TestNemo.test07avanzar2" />
-        <item itemvalue="JUnit.TestNemo.test06avanzar" />
-        <item itemvalue="JUnit.TestNemo.test05rotarIzquierda" />
       </list>
     </recent_temporary>
   </component>
@@ -148,7 +148,7 @@
       <workItem from="1696512780013" duration="1432000" />
       <workItem from="1696602461732" duration="175000" />
       <workItem from="1696602645224" duration="278000" />
-      <workItem from="1696603640567" duration="4950000" />
+      <workItem from="1696603640567" duration="5470000" />
     </task>
     <servers />
   </component>

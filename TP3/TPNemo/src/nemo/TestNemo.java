@@ -82,8 +82,32 @@ public class TestNemo {
         assertThrowsLike(()->nemo.indications("m"), "No se puede liberar la capsula");
     }
 
-private void assertThrowsLike(Executable executable, String message) {
-    assertEquals(message, assertThrows(Exception.class, executable).getMessage());
+
+    @Test
+    public void test09girar2veces(){
+        Nemo nemo = new Nemo();
+        nemo.indications("ll");
+        assertEquals(nemo.south, nemo.getDirection());
+    }
+    @Test
+    public void test09girarYVolver() {
+        Nemo nemo = new Nemo();
+        nemo.indications("lr");
+        assertEquals(nemo.north, nemo.getDirection());
     }
 
+
+    @Test
+    public void test10ascensoSinLimitacion() {
+        Nemo nemo = new Nemo();
+        nemo.indications("dddddd");
+        // Verificar que se pueda ascender múltiples unidades sin problemas.
+        // queda en 0
+        nemo.indications("uuuuuu");
+        assertEquals(0, nemo.getDepth());
+    }
+
+    private void assertThrowsLike(Executable executable, String message) {
+        assertEquals(message, assertThrows(Exception.class, executable).getMessage());
+    }
 }
