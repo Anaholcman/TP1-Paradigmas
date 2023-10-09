@@ -1,11 +1,11 @@
 package nemo;
 
 public class Nemo {
-    public int[] location = new int[]{0,0};
+    public Coords location = new Coords();
     public int depth = 0;
     public int direction = 1;
 
-    public int[] getLocation() {    return location;    }
+    public Coords getLocation() {    return location;    }
 
     public int getDirection() {  return direction;   }
 
@@ -24,24 +24,13 @@ public class Nemo {
                 }
             }
             if (c == rotarIzquierda) {
-                direction = (direction+1) % 4;
+                direction.rotarIzquierda();
             }
             if (c == rotarDerecha) {
-                direction = (direction-1) % 4;
+                direction.rotarDerecha();
             }
             if (c == avanzar) {
-                if (direction == north) {
-                    location[1]++;
-                }
-                if (direction == east) {
-                    location[0]++;
-                }
-                if (direction == south) {
-                    location[1]--;
-                }
-                if (direction == west) {
-                    location[0]--;
-                }
+                location.avanzar(direction);
             }
             if (c == liberarCapsula) {
                 if (depth <=1) {
@@ -53,12 +42,6 @@ public class Nemo {
         }
     }
 
-
-
-    public int north = 1;
-    public int east = 2;
-    public int south = 3;
-    public int west = 0;
 
     public char decender = 'd';
     public char ascender = 'u';
