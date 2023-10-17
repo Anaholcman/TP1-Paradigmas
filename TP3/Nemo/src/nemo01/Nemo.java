@@ -17,7 +17,7 @@ public class Nemo {
         movements.put ( 'u' , () -> depth.up() );
         movements.put ( 'l' , () -> direccion.left() );
         movements.put ( 'r' , () -> direccion.right() );
-        movements.put ( 'f' , () -> location.sum( getDirection() ) );
+        movements.put ( 'f' , () -> location.add( getDirection() ) );
         movements.put ( 'm' , () -> depth.capsula() );
     }
 

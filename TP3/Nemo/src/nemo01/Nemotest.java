@@ -13,8 +13,8 @@ public class Nemotest {
         Coords coords = new Coords();
         assertEquals ( 0 , nemo.getDepth() );
         assertTrue ( nemo.InSurface() );
-        assertEquals ( nemo.getLocation() , coords );
-        assertEquals ( north , nemo.getDirection() );
+        assertTrue( nemo.getLocation().equals(coords) );
+        assertTrue( nemo.getDirection().equals(north));
     }
     @Test
     public void test01() {
@@ -22,9 +22,9 @@ public class Nemotest {
         Direccion north = new North();
         Coords coords = new Coords();
         nemo.indications ("" );
-        assertEquals ( nemo.getLocation() , coords );
+        assertTrue( nemo.getLocation().equals(coords) );
         assertEquals ( nemo.getDepth() , 0 );
-        assertEquals ( north , nemo.getDirection() );
+        assertTrue( nemo.getDirection().equals(north));
     }
 
     @Test
@@ -33,10 +33,10 @@ public class Nemotest {
         Direccion north = new North();
         Coords coords = new Coords();
         nemo.indications ( "d" );
-        assertEquals ( nemo.getLocation() , coords );
-        assertFalse ( nemo.InSurface() );
-        assertEquals ( north , nemo.getDirection() );
+        assertTrue( nemo.getLocation().equals(coords) );
         assertEquals ( 1 , nemo.getDepth() );
+        assertFalse ( nemo.InSurface() );
+        assertTrue( nemo.getDirection().equals(north));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class Nemotest {
         Nemo nemo = new Nemo();
         Coords coords = new Coords();
         nemo.indications ("u" );
-        assertEquals ( nemo.getLocation() , coords );
+        assertTrue( nemo.getLocation().equals(coords) );
         assertTrue ( nemo.InSurface() );
     }
 
@@ -52,16 +52,16 @@ public class Nemotest {
     public void test04rotarDerecha() {
         Nemo nemo = new Nemo();
         Direccion east = new East() ;
-        nemo.indications ( "l" );
-        assertEquals ( nemo.getDirection() , east );
+        nemo.indications ( "r" );
+        assertTrue( nemo.getDirection().equals(east));
     }
 
     @Test
     public void test05rotarIzquierda() {
         Nemo nemo = new Nemo();
         Direccion west = new West() ;
-        nemo.indications ( "r" );
-        assertEquals ( nemo.getDirection() , west );
+        nemo.indications ( "l" );
+        assertTrue( nemo.getDirection().equals(west));
     }
 
     @Test
@@ -69,10 +69,10 @@ public class Nemotest {
         Nemo nemo = new Nemo();
         Direccion north = new North();
         Coords coords = new Coords();
-        coords.sum( north );
+        coords.add( north );
         nemo.indications ( "f" );
-        assertEquals ( nemo.getLocation() , coords );
-        assertEquals ( north , nemo.getDirection() );
+        assertTrue( nemo.getLocation().equals(coords) );
+        assertTrue( nemo.getDirection().equals(north));
     }
 
     @Test
@@ -80,12 +80,11 @@ public class Nemotest {
         Nemo nemo = new Nemo();
         Direccion north = new North();
         Coords coords = new Coords();
-        coords.sum( north );
-        coords.sum( north );
+        coords.add( north );
+        coords.add( north );
         nemo.indications ( "ff" );
-        assertEquals ( nemo.getLocation() , coords );
-        assertEquals ( north, nemo.getDirection() );
-
+        assertTrue( nemo.getLocation().equals(coords) );
+        assertTrue( nemo.getDirection().equals(north));
     }
     @Test
     public void test08FallaTirarCapsula() {
@@ -99,14 +98,14 @@ public class Nemotest {
         Nemo nemo = new Nemo();
         Direccion south = new South();
         nemo.indications("ll");
-        assertEquals ( south , nemo.getDirection() );
+        assertTrue( nemo.getDirection().equals(south));
     }
     @Test
     public void test09girarYVolver() {
         Nemo nemo = new Nemo();
         Direccion north = new North();
         nemo.indications("lr");
-        assertEquals(north, nemo.getDirection());
+        assertTrue( nemo.getDirection().equals(north));
     }
 
 

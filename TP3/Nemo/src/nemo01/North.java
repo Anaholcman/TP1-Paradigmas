@@ -5,7 +5,6 @@ public class North extends Direccion {
         super.x = 1;
         super.y = 0;
     }
-
     public Direccion right() {
         return new East();
     }
