@@ -1,5 +1,7 @@
 package nemo01;
 
+import nemo01.coords.Coords;
+import nemo01.direccion.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +11,7 @@ public class Nemotest {
     @Test
     public void test00() {
         Nemo nemo = new Nemo();
-        Direccion north = new North();
+        Cardinals north = new North();
         Coords coords = new Coords();
         assertEquals ( 0 , nemo.getDepth() );
         assertTrue ( nemo.InSurface() );
@@ -19,7 +21,7 @@ public class Nemotest {
     @Test
     public void test01() {
         Nemo nemo = new Nemo();
-        Direccion north = new North();
+        Cardinals north = new North();
         Coords coords = new Coords();
         nemo.indications ("" );
         assertTrue( nemo.getLocation().equals(coords) );
@@ -30,7 +32,7 @@ public class Nemotest {
     @Test
     public void test02descender() {
         Nemo nemo = new Nemo();
-        Direccion north = new North();
+        Cardinals north = new North();
         Coords coords = new Coords();
         nemo.indications ( "d" );
         assertTrue( nemo.getLocation().equals(coords) );
@@ -51,7 +53,7 @@ public class Nemotest {
     @Test
     public void test04rotarDerecha() {
         Nemo nemo = new Nemo();
-        Direccion east = new East() ;
+        Cardinals east = new East() ;
         nemo.indications ( "r" );
         assertTrue( nemo.getDirection().equals(east));
     }
@@ -59,7 +61,7 @@ public class Nemotest {
     @Test
     public void test05rotarIzquierda() {
         Nemo nemo = new Nemo();
-        Direccion west = new West() ;
+        Cardinals west = new West() ;
         nemo.indications ( "l" );
         assertTrue( nemo.getDirection().equals(west));
     }
@@ -67,7 +69,7 @@ public class Nemotest {
     @Test
     public void test06avanzar() {
         Nemo nemo = new Nemo();
-        Direccion north = new North();
+        Cardinals north = new North();
         Coords coords = new Coords();
         coords.add( north );
         nemo.indications ( "f" );
@@ -78,7 +80,7 @@ public class Nemotest {
     @Test
     public void test07avanzar2() {
         Nemo nemo = new Nemo();
-        Direccion north = new North();
+        Cardinals north = new North();
         Coords coords = new Coords();
         coords.add( north );
         coords.add( north );
@@ -96,14 +98,14 @@ public class Nemotest {
     @Test
     public void test09girar2veces(){
         Nemo nemo = new Nemo();
-        Direccion south = new South();
+        Cardinals south = new South();
         nemo.indications("ll");
-        assertTrue( nemo.getDirection().equals(south));
+        assertTrue( nemo.direccion.equals(south));
     }
     @Test
     public void test09girarYVolver() {
         Nemo nemo = new Nemo();
-        Direccion north = new North();
+        Cardinals north = new North();
         nemo.indications("lr");
         assertTrue( nemo.getDirection().equals(north));
     }

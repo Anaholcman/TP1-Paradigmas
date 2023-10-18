@@ -1,15 +1,15 @@
-package nemo01;
+package nemo01.direccion;
 
-public class North extends Direccion {
+public class North extends Cardinals {
     public North() {
         super.x = 1;
         super.y = 0;
     }
-    public Direccion right() {
+    public Cardinals right() {
         return new East();
     }
 
-    public Direccion left() {
+    public Cardinals left() {
         return new West();
     }
 }

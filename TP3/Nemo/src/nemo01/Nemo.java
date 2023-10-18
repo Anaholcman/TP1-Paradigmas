@@ -1,43 +1,38 @@
 package nemo01;
 
-import java.util.HashMap;
-import java.util.Map;
+import nemo01.commands.Commands;
+import nemo01.coords.Coords;
+import nemo01.depth.DepthNavigator;
+import nemo01.depth.Surface;
+import nemo01.direccion.Cardinals;
+import nemo01.direccion.North;
 
 public class Nemo {
-    public Depth depth;
+    public DepthNavigator depth;
     public Coords location;
-    public Direccion direccion;
-    private Map <Character, Runnable> movements = new HashMap<>();
+    public Cardinals direccion;
 
     public Nemo(){
         depth = new Surface();
         location = new Coords();
         direccion = new North();
-        movements.put ( 'd' , () -> depth.down() );
-        movements.put ( 'u' , () -> depth.up() );
-        movements.put ( 'l' , () -> direccion.left() );
-        movements.put ( 'r' , () -> direccion.right() );
-        movements.put ( 'f' , () -> location.add( getDirection() ) );
-        movements.put ( 'm' , () -> depth.capsula() );
     }
-
+    public void indications(String s) {
+        s.chars().forEach( character ->
+                Commands.commandsList.stream()
+                        .filter( com -> com.isCommand( (char) character) )
+                        .forEach( com -> com.execute(this) ) );
+    }
     public boolean InSurface() {
         return depth.IsSurface();
     }
-
+    public int getDepth() {
+        return depth.profundidad;
+    }
     public Coords getLocation() {
         return location;
     }
-
-    public Direccion getDirection() {
+    public Cardinals getDirection() {
         return direccion;
-    }
-
-    public void indications(String s) {
-        s.chars().forEach( (c) -> movements.get(c) );
-    }
-
-    public int getDepth() {
-        return depth.value();
     }
 }

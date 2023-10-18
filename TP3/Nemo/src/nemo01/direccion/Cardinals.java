@@ -1,6 +1,6 @@
-package nemo01;
+package nemo01.direccion;
 
-public abstract class Direccion {
+public abstract class Cardinals {
     public int x;
     public int y;
     public int getx() {
@@ -9,12 +9,12 @@ public abstract class Direccion {
     public int gety() {
         return y;
     }
-    public abstract Direccion right();
-    public abstract Direccion left();
+    public abstract Cardinals right();
+    public abstract Cardinals left();
     public String toString() {
         return "(" + x + "," + y + ")";
     }
-    public boolean equals(Direccion obj) {
+    public boolean equals(Cardinals obj) {
         return x == obj.x && y == obj.y;
     }
 }
