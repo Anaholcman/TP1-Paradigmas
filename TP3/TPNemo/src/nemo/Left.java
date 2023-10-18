@@ -8,4 +8,9 @@ public class Left extends Command {
         return key==command; // && depth.command();
     }
 
+
+    @Override
+    private void commandFor(char c, Depth depth) {
+
+    }
 }

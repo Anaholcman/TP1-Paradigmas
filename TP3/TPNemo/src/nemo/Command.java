@@ -3,9 +3,8 @@ package nemo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
-public class Command {
+public abstract class Command {
 
     // jerarquia de comandos.
     // los comandos estan definidos. arriba abajo, etc
@@ -17,7 +16,7 @@ public class Command {
 
     String key;
 
-    public static final List<Object> commandList = Arrays.asList(
+    public final List<Object> commandList = Arrays.asList(
         new Up(),
         new Down(),
         new Left(),
@@ -26,13 +25,7 @@ public class Command {
         new LanzarCapsula()
     );
 
-    private boolean canHandle(String s){
-        return each.applies(s);
-    }
-    private abstract void commandFor(String s){
-        return each.applies(s);
-    }
-    private abstract void execute(){
-        return each.ejecutar();
-    }
+    protected abstract void commandFor(char c, Depth depth);
+    private abstract void execute();
+
 }

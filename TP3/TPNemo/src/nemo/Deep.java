@@ -15,10 +15,20 @@ public class Deep extends Depth {
         }
         return this;
     }
-    public void capsula() {
-        throw new RuntimeException("No se puede liberar la capsula" );
-    }
+
     public boolean IsSurface() {
         return false;
     }
+
+    @Override
+    public int actualDepth(int diferencial) {
+        return profundidad + diferencial;
+    }
+
+    @Override
+    public void lanzarCapsula() {
+        throw new RuntimeException("No se puede liberar la capsula" );
+    }
+
+
 }

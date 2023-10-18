@@ -1,6 +1,4 @@
 package nemo;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Nemo {
     public Depth depth;
@@ -20,17 +18,14 @@ public class Nemo {
     public Coords getLocation() {
         return location;
     }
-
     public Direccion getDirection() {
         return direccion;
     }
+    public void indications(String s){
+        s.chars().forEach(character -> Command.command
 
-
-    public void indications1(String s ){
-        Command.commandList.commandFor("c").ejecutar();
-    }
     public int getDepth() {
-        return depth.value();
+        return depth.actualDepth(0);
     }
 }
 

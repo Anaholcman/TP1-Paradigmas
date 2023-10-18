@@ -10,10 +10,17 @@ public class Surface extends Depth{
     public Depth up() {
         return this;
     }
-    public void capsula() {
 
+    @Override
+    public void lanzarCapsula() {
     }
+
     public boolean IsSurface() {
         return true;
+    }
+
+    @Override
+    public int actualDepth(int diferencial) {
+        return profundidad + diferencial;
     }
 }

@@ -11,10 +11,13 @@ public class Up extends Command {
         return this.key==x;
     }
 
-    protected Command commandFor(String s, Depth depth){
 
-    }
     private void ejecute(){
         Depth.profundidad ++;
+    }
+
+    @Override
+    protected void commandFor(char c, Depth depth) {
+        return applies(String.valueOf(c)));
     }
 }
