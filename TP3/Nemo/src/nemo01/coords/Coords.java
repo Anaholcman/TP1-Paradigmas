@@ -17,5 +17,8 @@ public class Coords {
     public boolean equals(Coords obj) {
         return x == obj.x && y == obj.y;
     }
+    public String toString() {
+        return "(" + x + "," + y + ")";
+    }
 
 }
