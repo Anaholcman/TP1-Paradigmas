@@ -5,136 +5,159 @@ import org.junit.jupiter.api.function.Executable;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Nemotest {
-///// holaaaa probandoooooo
     @Test
-    public void test01() {
-        compareState( new Nemo(), 0, true, 0, 0, 1, 0);
+    public void test01InitialSetUp() {
+        compareState( new Nemo(), 0,true,0, 0, 1, 0);
     }
 
     @Test
-    public void test02comandovacio() {
+    public void test02ComandoVacio() {
         Nemo nemo = new Nemo();
         nemo.indications ("");
         compareState( nemo, 0,true,0, 0, 1, 0);
     }
 
     @Test
-    public void test03descender() {
+    public void test03Descender() {
         Nemo nemo = new Nemo();
         nemo.indications ( "d" );
-        compareState( nemo,1, true,0, 0, 1, 0);
+        compareDepths(nemo, 1);
+        compareCapacityOfLaunch(nemo, true);
     }
 
     @Test
-    public void test04ascender() {
+    public void test04AscenderDesdeSurface() {
         Nemo nemo = new Nemo();
         nemo.indications ("u" );
-        compareState( nemo, 0,true,0, 0, 1, 0);
+        compareDepths(nemo, 0);
+        compareCapacityOfLaunch(nemo, true);
     }
 
     @Test
-    public void test05ascensoSinLimitacion() {
+    public void test05MultiplesAscensosDesdeSurface() {
         Nemo nemo = new Nemo();
         nemo.indications ( "uuuuu" );
-        compareState( nemo, 0,true, 0, 0,1, 0);
+        compareDepths(nemo, 0);
+        compareCapacityOfLaunch(nemo, true);
     }
     @Test
-    public void test06mutiplescambiodenivel() {
+    public void test06MutiplesCambiosDeNivel() {
         Nemo nemo = new Nemo();
-        nemo.indications ( "dddddd" );
-        nemo.indications ( "uuuuu" );
-        compareState( nemo, 1,true, 0, 0,1, 0);
+        nemo.indications ( "dddddduuuu" ); // baja 6 sube 4
+        compareDepths(nemo, 2);
+        compareCapacityOfLaunch(nemo, false); // pensar si sacarlo o no
     }
 
     @Test
-    public void test07rotarDerecha() {
+    public void test07RotarDerecha() {
         Nemo nemo = new Nemo();
         nemo.indications ( "r" );
-        compareState( nemo, 0,true,0, 0, 0, 1);
+        compareDirections(nemo, 0, 1);
     }
 
     @Test
-    public void test08rotarIzquierda() {
+    public void test08RotarIzquierda() {
         Nemo nemo = new Nemo();
         nemo.indications ( "l" );
-        compareState( nemo, 0,true,0, 0, 0, -1);
+        compareDirections(nemo, 0, -1);
     }
 
     @Test
-    public void test09girar2veces(){
+    public void test09Girar90grados(){
         Nemo nemo = new Nemo();
-        nemo.indications("ll");
-        compareState( nemo, 0,true, 0, 0,-1, 0);
+        nemo.indications("ll"); // gira90grados
+        compareDirections(nemo, 0, -1);
     }
 
     @Test
-    public void test10girarYVolver() {
+    public void test10Girar360grados() {
         Nemo nemo = new Nemo();
-        nemo.indications("rrrr");
-        compareState( nemo, 0,true, 0, 0,1, 0);
+        nemo.indications("rr"); // gira 90 grados
+        compareDirections(nemo, -1, 0);
+        nemo.indications("rr"); // gira 90 grados
+        compareDirections(nemo, 1, 0);
     }
 
     @Test
-    public void test11avanzarnorth() {
+    public void test11AvanzarNorth() {
         Nemo nemo = new Nemo();
         nemo.indications ( "f" );
-        compareState( nemo, 0,true, 1, 0,1, 0);
+        compareCoords(nemo, 1, 0);
+        compareDirections(nemo, 1, 0);
     }
 
     @Test
-    public void test12avanzarwest() {
+    public void test12AvanzarWest() {
         Nemo nemo = new Nemo();
         nemo.indications ( "rf" );
-        compareState( nemo, 0,true, 0, 1,0, 1);
+        compareCoords(nemo, 0, 1);
+        compareDirections(nemo, 0,1);
     }
 
     @Test
-    public void test13avanzareast() {
+    public void test13AvanzarEast() {
         Nemo nemo = new Nemo();
         nemo.indications ( "rrf" );
         compareState( nemo, 0,true, -1, 0,-1, 0);
     }
 
     @Test
-    public void test14avanzarsouth() {
+    public void test14AvanzarSouth() {
         Nemo nemo = new Nemo();
         nemo.indications ( "lf" );
         compareState( nemo, 0,true, 0, -1,0, -1);
     }
 
     @Test
-    public void test15FallaTirarCapsula() {
+    public void test15TirarCapsulaEnSuperficie() {
         Nemo nemo = new Nemo();
         nemo.indications( "m" );
-        compareState( nemo, 0,true, 0, 0,1, 0);
+        compareDepths(nemo, 0);
+        compareCapacityOfLaunch(nemo, true);
     }
 
     @Test
-    public void test16FallaTirarCapsula() {
+    public void test16TirarCapsulaEnBelowSurface() {
         Nemo nemo = new Nemo();
         nemo.indications( "d m" );
-        compareState( nemo, 1,true, 0, 0,1, 0);
+        compareDepths(nemo, 1);
+        compareCapacityOfLaunch(nemo, true);
     }
 
     @Test
-    public void test17FallaTirarCapsula() {
+    public void test17TirarCapsulaEnDeep() {
         Nemo nemo = new Nemo();
         nemo.indications( "d d" );
-        compareState( nemo, 2,false, 0, 0,1, 0);
+        compareDepths(nemo, 2);
+        compareCapacityOfLaunch(nemo, false);
         assertThrowsLike ( ()->nemo.indications("m") , "No se puede liberar la capsula" );
     }
 
-    private static void compareState( Nemo nemo, int depth, boolean issurface,int xcoord, int ycoord, int xdire, int ydire) {
+    private static void compareState( Nemo nemo, int depth, boolean canLaunch,int xcoord, int ycoord, int xdire, int ydire) {
+       compareDepths(nemo, depth);
+       compareCapacityOfLaunch(nemo, canLaunch);
+       compareCoords(nemo, xcoord, ycoord);
+       compareDirections(nemo, xdire, ydire);
+    }
+    private static void compareDepths( Nemo nemo, int depth) {
         assertEquals (depth, nemo.getDepth() );
-        assertEquals (issurface, nemo.InSurface() );
+    }
+    private static void compareCapacityOfLaunch( Nemo nemo, boolean canLaunch) {
+        assertEquals (canLaunch, nemo.isCapsuleLaunchable() );
+    }
+    private static void compareCoords( Nemo nemo, int xcoord, int ycoord) {
         assertEquals (xcoord, nemo.getLocation().getX() );
         assertEquals (ycoord, nemo.getLocation().getY() );
+    }
+    private static void compareDirections( Nemo nemo, int xdire, int ydire) {
         assertEquals (xdire, nemo.getDirection().getX() );
         assertEquals (ydire, nemo.getDirection().getY() );
     }
+
     private void assertThrowsLike(Executable executable, String message) {
         assertEquals ( message , assertThrows ( Exception.class , executable ) .getMessage() );
     }
+
 }
 
 //public class Nemotest {

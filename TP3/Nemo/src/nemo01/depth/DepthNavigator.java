@@ -6,5 +6,5 @@ public abstract class DepthNavigator {
     public abstract DepthNavigator down();
     public abstract DepthNavigator up();
     public abstract void capsula();
-    public abstract boolean IsSurface();
+    public abstract boolean canLaunchCapsule();
 }

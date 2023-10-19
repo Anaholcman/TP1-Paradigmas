@@ -13,7 +13,7 @@ public class Deep extends DepthNavigator {
     public void capsula() {
         throw new RuntimeException("No se puede liberar la capsula" );
     }
-    public boolean IsSurface() {
+    public boolean canLaunchCapsule() {
         return false;
     }
 }

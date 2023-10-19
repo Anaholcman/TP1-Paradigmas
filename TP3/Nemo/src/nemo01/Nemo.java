@@ -23,8 +23,8 @@ public class Nemo {
                         .filter( com -> com.isCommand( (char) character) )
                         .forEach( com -> com.execute(this) ) );
     }
-    public boolean InSurface() {
-        return depth.IsSurface();
+    public boolean isCapsuleLaunchable() {
+        return depth.canLaunchCapsule();
     }
     public int getDepth() {
         return depth.profundidad;

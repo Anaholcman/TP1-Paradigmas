@@ -11,7 +11,7 @@ public class Surface extends DepthNavigator {
         return this;
     }
     public void capsula() {}
-    public boolean IsSurface() {
+    public boolean canLaunchCapsule() {
         return true;
     }
 }
