@@ -10,15 +10,14 @@ public class Coords {
         y = 0;
     }
     public Coords add(Cardinals direction) {
-        x += direction.getx();
-        y += direction.gety();
+        x += direction.getX();
+        y += direction.getY();
         return this;
     }
-    public boolean equals(Coords obj) {
-        return x == obj.x && y == obj.y;
+    public int getX() {
+        return x;
     }
-    public String toString() {
-        return "(" + x + "," + y + ")";
+    public int getY() {
+        return y;
     }
-
 }

@@ -8,7 +8,6 @@ public class North extends Cardinals {
     public Cardinals right() {
         return new East();
     }
-
     public Cardinals left() {
         return new West();
     }
