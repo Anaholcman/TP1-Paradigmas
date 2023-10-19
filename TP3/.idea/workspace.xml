@@ -44,6 +44,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+<<<<<<< Updated upstream
   <component name="RunManager" selected="JUnit.TestNemo.test02descender">
     <configuration name="TestNemo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TPNemo" />
@@ -55,6 +56,19 @@
       </extension>
       <option name="PACKAGE_NAME" value="nemo" />
       <option name="MAIN_CLASS_NAME" value="nemo.TestNemo" />
+=======
+  <component name="RunManager" selected="JUnit.Nemotest">
+    <configuration name="Nemotest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TP3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nemo01.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="nemo01" />
+      <option name="MAIN_CLASS_NAME" value="nemo01.Nemotest" />
+>>>>>>> Stashed changes
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -64,7 +78,11 @@
       <module name="TPNemo" />
       <extension name="coverage">
         <pattern>
+<<<<<<< Updated upstream
           <option name="PATTERN" value="nemo.*" />
+=======
+          <option name="PATTERN" value="nemo.depth.*" />
+>>>>>>> Stashed changes
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -80,7 +98,11 @@
       <module name="TPNemo" />
       <extension name="coverage">
         <pattern>
+<<<<<<< Updated upstream
           <option name="PATTERN" value="nemo.*" />
+=======
+          <option name="PATTERN" value="nemo.depth.*" />
+>>>>>>> Stashed changes
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -96,7 +118,11 @@
       <module name="TPNemo" />
       <extension name="coverage">
         <pattern>
+<<<<<<< Updated upstream
           <option name="PATTERN" value="nemo.*" />
+=======
+          <option name="PATTERN" value="nemo.depth.*" />
+>>>>>>> Stashed changes
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -112,7 +138,11 @@
       <module name="TPNemo" />
       <extension name="coverage">
         <pattern>
+<<<<<<< Updated upstream
           <option name="PATTERN" value="nemo.*" />
+=======
+          <option name="PATTERN" value="nemo.depth.*" />
+>>>>>>> Stashed changes
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -126,11 +156,18 @@
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< Updated upstream
+=======
+        <item itemvalue="JUnit.Nemotest" />
+>>>>>>> Stashed changes
         <item itemvalue="JUnit.TestNemo.test02descender" />
         <item itemvalue="JUnit.TestNemo.test01NolePasoNada" />
         <item itemvalue="JUnit.TestNemo.test01" />
         <item itemvalue="JUnit.TestNemo.test00" />
+<<<<<<< Updated upstream
         <item itemvalue="JUnit.TestNemo" />
+=======
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>
@@ -149,7 +186,13 @@
       <workItem from="1696602645224" duration="278000" />
       <workItem from="1696603640567" duration="9254000" />
       <workItem from="1697499484472" duration="4076000" />
+<<<<<<< Updated upstream
       <workItem from="1697571801639" duration="9119000" />
+=======
+      <workItem from="1697571801639" duration="12918000" />
+      <workItem from="1697720501099" duration="41000" />
+      <workItem from="1697720581495" duration="73000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
