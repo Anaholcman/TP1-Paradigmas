@@ -21,6 +21,7 @@ public class Nemotest {
         Nemo nemo = createSubmarineWithCommand("d");
         compareDepths(nemo, 1);
         compareCapacityOfLaunch(nemo, true);
+        compareState( nemo, 1,true,0, 0, 1, 0);
     }
 
     @Test
@@ -28,6 +29,7 @@ public class Nemotest {
         Nemo nemo = createSubmarineWithCommand("u");
         compareDepths(nemo, 0);
         compareCapacityOfLaunch(nemo, true);
+        compareState( nemo, 0,true,0, 0, 1, 0);
     }
 
     @Test
@@ -45,12 +47,17 @@ public class Nemotest {
 
     @Test
     public void test07RotarDerecha() {
-        compareDirections(createSubmarineWithCommand("r"), 0, 1);
+        Nemo nemo = createSubmarineWithCommand("r");
+        compareDirections(nemo, 0, 1);
+        compareState( nemo, 0,true, 0, 0,0, 1);
+
     }
 
     @Test
     public void test08RotarIzquierda() {
-        compareDirections(createSubmarineWithCommand("l"), 0, -1);
+        Nemo nemo = createSubmarineWithCommand("l");
+        compareDirections(nemo, 0, -1);
+        compareState( nemo, 0,true, 0, 0,0, -1);
     }
 
     @Test
@@ -72,6 +79,7 @@ public class Nemotest {
         Nemo nemo = createSubmarineWithCommand("f");
         compareCoords(nemo, 1, 0);
         compareDirections(nemo, 1, 0);
+        compareState(nemo, 0, true, 1, 0, 1, 0);
     }
 
     @Test
@@ -98,6 +106,7 @@ public class Nemotest {
         Nemo nemo = createSubmarineWithCommand("m");
         compareDepths(nemo, 0);
         compareCapacityOfLaunch(nemo, true);
+        compareState( nemo, 0,true, 0, 0,1, 0);
     }
 
     @Test

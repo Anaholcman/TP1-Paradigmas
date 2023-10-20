@@ -1,6 +1,7 @@
 package nemo01.commands;
 
 import nemo01.Nemo;
+import nemo01.direccion.Cardinals;
 
 import java.util.Arrays;
 import java.util.List;

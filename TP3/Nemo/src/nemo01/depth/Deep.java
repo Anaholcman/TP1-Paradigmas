@@ -12,7 +12,7 @@ public class Deep extends DepthNavigator {
     public DepthNavigator up() {
         return anterior;
     }
-    public void capsula() {
+    public void lanzamientoDeCapsula() {
         throw new RuntimeException(NoSePuedeLiberarLaCapsula);
     }
     public boolean canLaunchCapsule() {

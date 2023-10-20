@@ -5,15 +5,19 @@ import nemo01.direccion.Cardinals;
 public class Coords {
     public int x;
     public int y;
-    public Coords(){
-        x = 0;
-        y = 0;
+    public Coords(int x, int y){
+        this.x = x;
+        this.y = y;
     }
-    public Coords add(Cardinals direction) {
+    public Coords add11(Cardinals direction) {
         x += direction.getX();
         y += direction.getY();
         return this;
     }
+    public Coords add(Cardinals direccionAditiva) {
+        return new Coords(this.x + direccionAditiva.x, this.y + direccionAditiva.y);
+    }
+
     public int getX() {
         return x;
     }

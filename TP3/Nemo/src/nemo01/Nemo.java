@@ -14,7 +14,7 @@ public class Nemo {
 
     public Nemo(){
         depth = new Surface();
-        location = new Coords();
+        location = new Coords(0,0);
         direccion = new North();
     }
     public void indications(String s) {
@@ -34,5 +34,27 @@ public class Nemo {
     }
     public Cardinals getDirection() {
         return direccion;
+    }
+
+    public void avanzar() {
+        this.location =location.add(this.direccion);
+    }
+    public void ascender() {
+        this.depth = depth.up();
+    }
+    public void descender() {
+        this.depth = this.depth.down();
+    }
+    public void rotarDerecha() {
+        this.direccion = this.direccion.right();
+    }
+
+    public void rotarIzquierda() {
+        this.direccion = this.direccion.left();
+
+    }
+
+    public void lanzarCapsula() {
+        this.depth.lanzamientoDeCapsula();
     }
 }
