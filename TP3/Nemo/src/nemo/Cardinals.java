@@ -1,4 +1,4 @@
-package nemo01.direccion;
+package nemo;
 
 public abstract class Cardinals {
     public int x;

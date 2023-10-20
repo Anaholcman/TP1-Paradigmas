@@ -1,6 +1,4 @@
-package nemo01.commands;
-
-import nemo01.Nemo;
+package nemo;
 
 public class Lanzar extends Commands {
     public boolean isCommand(char c) {
