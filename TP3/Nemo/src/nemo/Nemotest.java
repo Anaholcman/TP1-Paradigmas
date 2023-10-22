@@ -1,8 +1,9 @@
 package nemo;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Nemotest {
     @Test
@@ -22,7 +23,7 @@ public class Nemotest {
 
     @Test
     public void test04DescenderDeep() {
-        compareDepths ( createSubmarineWithCommand("dd"), 2, false );
+        compareDepthsState( createSubmarineWithCommand("dd"), 2, false );
     }
 
     @Test
@@ -32,12 +33,12 @@ public class Nemotest {
 
     @Test
     public void test06MultiplesAscensosDesdeSurface() {
-        compareDepths ( createSubmarineWithCommand("uuuuu"), 0, true );
+        compareDepthsState( createSubmarineWithCommand("uuuuu"), 0, true );
     }
 
     @Test
     public void test07MutiplesCambiosDeNivel() {
-        compareDepths ( createSubmarineWithCommand("dddddd uuuuu"), 1, true );
+        compareDepthsState( createSubmarineWithCommand("dddddd uuuuu"), 1, true );
     }
 
     @Test
@@ -57,7 +58,7 @@ public class Nemotest {
 
     @Test
     public void test11Girar360grados() {
-        compareDirections (createSubmarineWithCommand("rrrr"), 1, 0);
+        compareDirections ( createSubmarineWithCommand("rrrr"), 1, 0);
     }
 
     @Test
@@ -87,12 +88,12 @@ public class Nemotest {
 
     @Test
     public void test17TirarCapsulaEnBelowSurface() {
-        compareDepths ( createSubmarineWithCommand("d m"), 1, true);
+        compareDepthsState ( createSubmarineWithCommand("d m"), 1, true);
     }
 
     @Test
     public void test18TirarCapsulaEnDeep() {
-        assertThrowsLike ( ()-> createSubmarineWithCommand("d d m") , Deep.NoSePuedeLiberarLaCapsula );
+        assertEquals ( Deep.NoSePuedeLiberarLaCapsula , assertThrows ( Exception.class , ()-> createSubmarineWithCommand("d d m") ) .getMessage() );
     }
 
     @Test
@@ -106,26 +107,22 @@ public class Nemotest {
     }
 
     private static void compareState( Nemo nemo,  int depth, boolean canLaunch,int xcoord, int ycoord, int xdire, int ydire) {
-        compareDepths(nemo, depth, canLaunch);
-        compareCoords(nemo, xcoord, ycoord);
-        compareDirections(nemo, xdire, ydire);
+        compareDepthsState ( nemo, depth, canLaunch);
+        compareCoords ( nemo, xcoord, ycoord);
+        compareDirections ( nemo, xdire, ydire);
     }
-    private static void compareDepths( Nemo nemo, int depth, boolean canLaunch) {
-        assertEquals (depth, nemo.getDepth() );
-        assertEquals (canLaunch, nemo.isCapsuleLaunchable() );
+    private static void compareDepthsState(Nemo nemo, int depth, boolean canLaunch) {
+        assertEquals ( depth, nemo.getDepth() );
+        assertEquals ( canLaunch, nemo.isCapsuleLaunchable() );
     }
 
     private static void compareCoords( Nemo nemo, int xcoord, int ycoord) {
-        assertEquals (xcoord, nemo.getLocation().getX() );
-        assertEquals (ycoord, nemo.getLocation().getY() );
+        assertEquals ( xcoord, nemo.getLocation().getX() );
+        assertEquals ( ycoord, nemo.getLocation().getY() );
     }
     private static void compareDirections( Nemo nemo, int xdire, int ydire) {
-        assertEquals (xdire, nemo.getDirection().getX() );
-        assertEquals (ydire, nemo.getDirection().getY() );
-    }
-
-    private void assertThrowsLike(Executable executable, String message) {
-        assertEquals ( message , assertThrows ( Exception.class , executable ) .getMessage() );
+        assertEquals ( xdire, nemo.getDirection().getX() );
+        assertEquals ( ydire, nemo.getDirection().getY() );
     }
 
     private Nemo createSubmarineWithCommand(String command){
