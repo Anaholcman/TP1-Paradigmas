@@ -1,11 +1,4 @@
-package nemo01;
-
-import nemo01.commands.Commands;
-import nemo01.coords.Coords;
-import nemo01.depth.DepthNavigator;
-import nemo01.depth.Surface;
-import nemo01.direccion.Cardinals;
-import nemo01.direccion.North;
+package nemo;
 
 public class Nemo {
     public DepthNavigator depth;
@@ -17,14 +10,16 @@ public class Nemo {
         location = new Coords(0,0);
         direccion = new North();
     }
+
     public void indications(String s) {
         s.chars().forEach( character ->
                 Commands.commandsList.stream()
                         .filter( com -> com.isCommand( (char) character) )
                         .forEach( com -> com.execute(this) ) );
     }
+
     public boolean isCapsuleLaunchable() {
-        return depth.canLaunchCapsule();
+        return depth.isSurface();
     }
     public int getDepth() {
         return depth.profundidad;
@@ -37,23 +32,20 @@ public class Nemo {
     }
 
     public void avanzar() {
-        this.location =location.add(this.direccion);
+        this.location = location.add(direccion);
     }
     public void ascender() {
         this.depth = depth.up();
     }
     public void descender() {
-        this.depth = this.depth.down();
+        this.depth = depth.down();
     }
     public void rotarDerecha() {
-        this.direccion = this.direccion.right();
+        this.direccion = direccion.right();
     }
-
     public void rotarIzquierda() {
-        this.direccion = this.direccion.left();
-
+        this.direccion = direccion.left();
     }
-
     public void lanzarCapsula() {
         this.depth.lanzamientoDeCapsula();
     }

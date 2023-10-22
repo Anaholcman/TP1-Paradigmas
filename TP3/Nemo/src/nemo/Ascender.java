@@ -1,6 +1,5 @@
-package nemo01.commands;
+package nemo;
 
-import nemo01.Nemo;
 public class Ascender extends Commands {
     public boolean isCommand(char c) {
         return c == 'u' ;

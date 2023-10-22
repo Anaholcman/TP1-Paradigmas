@@ -1,6 +1,5 @@
-package nemo01;
+package nemo;
 
-import nemo01.depth.Deep;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,151 +7,114 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Nemotest {
     @Test
     public void test01InitialSetUp() {
-        compareState( new Nemo(), 0,true,0, 0, 1, 0);
+        compareState ( new Nemo(), 0,true,0, 0, 1, 0 );
     }
 
     @Test
     public void test02ComandoVacio() {
-        compareState( createSubmarineWithCommand(""), 0,true,0, 0, 1, 0);
+        compareState ( createSubmarineWithCommand(" "), 0,true,0, 0, 1, 0 );
     }
 
     @Test
     public void test03Descender() {
-        Nemo nemo = createSubmarineWithCommand("d");
-        compareDepths(nemo, 1);
-        compareCapacityOfLaunch(nemo, true);
-        compareState( nemo, 1,true,0, 0, 1, 0);
+        compareState ( createSubmarineWithCommand("d"), 1,true,0, 0, 1, 0 );
     }
 
     @Test
-    public void test04AscenderDesdeSurface() {
-        Nemo nemo = createSubmarineWithCommand("u");
-        compareDepths(nemo, 0);
-        compareCapacityOfLaunch(nemo, true);
-        compareState( nemo, 0,true,0, 0, 1, 0);
+    public void test04DescenderDeep() {
+        compareDepths ( createSubmarineWithCommand("dd"), 2, false );
     }
 
     @Test
-    public void test05MultiplesAscensosDesdeSurface() {
-        Nemo nemo = createSubmarineWithCommand("uuuuu");
-        compareDepths(nemo, 0);
-        compareCapacityOfLaunch(nemo, true);
-    }
-    @Test
-    public void test06MutiplesCambiosDeNivel() {
-        Nemo nemo = createSubmarineWithCommand("dddddduuuu");
-        compareDepths(nemo, 2);
-        compareCapacityOfLaunch(nemo, false); // pensar si sacarlo o no
+    public void test05AscenderDesdeSurface() {
+        compareState ( createSubmarineWithCommand("u"), 0,true,0, 0, 1, 0 );
     }
 
     @Test
-    public void test07RotarDerecha() {
-        Nemo nemo = createSubmarineWithCommand("r");
-        compareDirections(nemo, 0, 1);
-        compareState( nemo, 0,true, 0, 0,0, 1);
-
+    public void test06MultiplesAscensosDesdeSurface() {
+        compareDepths ( createSubmarineWithCommand("uuuuu"), 0, true );
     }
 
     @Test
-    public void test08RotarIzquierda() {
-        Nemo nemo = createSubmarineWithCommand("l");
-        compareDirections(nemo, 0, -1);
-        compareState( nemo, 0,true, 0, 0,0, -1);
+    public void test07MutiplesCambiosDeNivel() {
+        compareDepths ( createSubmarineWithCommand("dddddd uuuuu"), 1, true );
     }
 
     @Test
-    public void test09Girar90grados(){
-        compareDirections(createSubmarineWithCommand("ll"), -1, 0);
+    public void test08RotarDerecha() {
+        compareState ( createSubmarineWithCommand("r"), 0,true, 0, 0,0, 1 );
     }
 
     @Test
-    public void test10Girar360grados() {
-        Nemo nemo = new Nemo();
-        nemo.indications("rr"); // gira 90 grados
-        compareDirections(nemo, -1, 0);
-        nemo.indications("rr"); // gira 90 grados
-        compareDirections(nemo, 1, 0);
+    public void test09RotarIzquierda() {
+        compareState ( createSubmarineWithCommand("l"), 0,true, 0, 0,0, -1 );
     }
 
     @Test
-    public void test11AvanzarNorth() {
-        Nemo nemo = createSubmarineWithCommand("f");
-        compareCoords(nemo, 1, 0);
-        compareDirections(nemo, 1, 0);
-        compareState(nemo, 0, true, 1, 0, 1, 0);
+    public void test10Girar180grados(){
+        compareDirections ( createSubmarineWithCommand("ll"), -1, 0 );
     }
 
     @Test
-    public void test12AvanzarWest() {
-        Nemo nemo = createSubmarineWithCommand("rf");
-        compareCoords(nemo, 0, 1);
-        compareDirections(nemo, 0,1);
+    public void test11Girar360grados() {
+        compareDirections (createSubmarineWithCommand("rrrr"), 1, 0);
     }
 
     @Test
-    public void test13AvanzarEast() {
-        Nemo nemo = createSubmarineWithCommand( "rrf" );
-        compareState( nemo, 0,true, -1, 0,-1, 0);
+    public void test12AvanzarNorth() {
+        compareState ( createSubmarineWithCommand("f"), 0, true, 1, 0, 1, 0);
     }
 
     @Test
-    public void test14AvanzarSouth() {
-        Nemo nemo = createSubmarineWithCommand("lf");
-        compareState( nemo, 0,true, 0, -1,0, -1);
+    public void test13AvanzarWest() {
+        compareState ( createSubmarineWithCommand("rf"), 0, true, 0, 1, 0, 1);
     }
 
     @Test
-    public void test15TirarCapsulaEnSuperficie() {
-        Nemo nemo = createSubmarineWithCommand("m");
-        compareDepths(nemo, 0);
-        compareCapacityOfLaunch(nemo, true);
-        compareState( nemo, 0,true, 0, 0,1, 0);
+    public void test14AvanzarEast() {
+        compareState ( createSubmarineWithCommand( "rrf" ), 0,true, -1, 0,-1, 0);
     }
 
     @Test
-    public void test16TirarCapsulaEnBelowSurface() {
-        Nemo nemo = createSubmarineWithCommand("d m");
-        compareDepths(nemo, 1);
-        compareCapacityOfLaunch(nemo, true);
+    public void test15AvanzarSouth() {
+        compareState ( createSubmarineWithCommand("lf"), 0,true, 0, -1,0, -1);
     }
 
     @Test
-    public void test17TirarCapsulaEnDeep() {
-        Nemo nemo = createSubmarineWithCommand("d d");
-        compareDepths(nemo, 2);
-        compareCapacityOfLaunch(nemo, false);
-        assertThrowsLike ( ()->nemo.indications("m") , Deep.NoSePuedeLiberarLaCapsula );
+    public void test16TirarCapsulaEnSuperficie() {
+        compareState ( createSubmarineWithCommand("m"), 0,true, 0, 0,1, 0);
     }
 
     @Test
-    public void test18DescenderyAvanzar() {
-        Nemo nemo = createSubmarineWithCommand("df");
-        compareDepths(nemo, 1);
-        //compareCapacityOfLaunch(nemo, true);  para mi no hace falta
-        compareCoords(nemo, 1, 0);
+    public void test17TirarCapsulaEnBelowSurface() {
+        compareDepths ( createSubmarineWithCommand("d m"), 1, true);
     }
 
     @Test
-    public void test19DescenderGirarYAvanzar(){
-        Nemo nemo = createSubmarineWithCommand("drf");
-        compareDepths(nemo, 1);
-        compareCapacityOfLaunch(nemo, true);
-        compareCoords(nemo, 0, 1);
-        compareDirections(nemo, 0, 1);
+    public void test18TirarCapsulaEnDeep() {
+        assertThrowsLike ( ()-> createSubmarineWithCommand("d d m") , Deep.NoSePuedeLiberarLaCapsula );
+    }
+
+    @Test
+    public void test19DescenderyAvanzar() {
+        compareState ( createSubmarineWithCommand("df"), 1,true, 1, 0,1, 0);
+    }
+
+    @Test
+    public void test20DescenderGirarYAvanzar(){
+        compareState ( createSubmarineWithCommand("ddrf"), 2,false, 0, 1, 0,1);
     }
 
     private static void compareState( Nemo nemo,  int depth, boolean canLaunch,int xcoord, int ycoord, int xdire, int ydire) {
-        compareDepths(nemo, depth);
-       compareCapacityOfLaunch(nemo, canLaunch);
-       compareCoords(nemo, xcoord, ycoord);
-       compareDirections(nemo, xdire, ydire);
+        compareDepths(nemo, depth, canLaunch);
+        compareCoords(nemo, xcoord, ycoord);
+        compareDirections(nemo, xdire, ydire);
     }
-    private static void compareDepths( Nemo nemo, int depth) {
+    private static void compareDepths( Nemo nemo, int depth, boolean canLaunch) {
         assertEquals (depth, nemo.getDepth() );
-    }
-    private static void compareCapacityOfLaunch( Nemo nemo, boolean canLaunch) {
         assertEquals (canLaunch, nemo.isCapsuleLaunchable() );
     }
+
     private static void compareCoords( Nemo nemo, int xcoord, int ycoord) {
         assertEquals (xcoord, nemo.getLocation().getX() );
         assertEquals (ycoord, nemo.getLocation().getY() );

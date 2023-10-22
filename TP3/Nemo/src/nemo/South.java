@@ -1,4 +1,4 @@
-package nemo01.direccion;
+package nemo;
 
 public class South extends Cardinals {
     public South() {

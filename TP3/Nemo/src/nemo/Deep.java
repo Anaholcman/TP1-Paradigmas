@@ -1,4 +1,5 @@
-package nemo01.depth;
+package nemo;
+
 public class Deep extends DepthNavigator {
     public static  String NoSePuedeLiberarLaCapsula = "No se puede liberar la capsula";
 
@@ -15,7 +16,7 @@ public class Deep extends DepthNavigator {
     public void lanzamientoDeCapsula() {
         throw new RuntimeException(NoSePuedeLiberarLaCapsula);
     }
-    public boolean canLaunchCapsule() {
+    public boolean isSurface() {
         return false;
     }
 }

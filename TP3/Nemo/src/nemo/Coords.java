@@ -1,6 +1,4 @@
-package nemo01.coords;
-
-import nemo01.direccion.Cardinals;
+package nemo;
 
 public class Coords {
     public int x;

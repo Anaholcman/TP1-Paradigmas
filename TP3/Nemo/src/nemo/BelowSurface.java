@@ -1,4 +1,4 @@
-package nemo01.depth;
+package nemo;
 
 public class BelowSurface extends DepthNavigator {
     public BelowSurface(){
@@ -11,7 +11,7 @@ public class BelowSurface extends DepthNavigator {
         return new Surface();
     }
     public void lanzamientoDeCapsula() {}
-    public boolean canLaunchCapsule() {
+    public boolean isSurface() {
         return true;
     }
 }

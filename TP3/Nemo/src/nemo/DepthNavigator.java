@@ -1,4 +1,4 @@
-package nemo01.depth;
+package nemo;
 
 public abstract class DepthNavigator {
     public int profundidad;
@@ -6,5 +6,5 @@ public abstract class DepthNavigator {
     public abstract DepthNavigator down();
     public abstract DepthNavigator up();
     public abstract void lanzamientoDeCapsula();
-    public abstract boolean canLaunchCapsule();
+    public abstract boolean isSurface();
 }
