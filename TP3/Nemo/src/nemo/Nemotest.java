@@ -22,7 +22,7 @@ public class Nemotest {
 
     @Test
     public void test04DescenderDeep() {
-        compareDepths ( createSubmarineWithCommand("dd"), 2, false );
+        compareDepthsState( createSubmarineWithCommand("dd"), 2, false );
     }
 
     @Test
@@ -32,12 +32,12 @@ public class Nemotest {
 
     @Test
     public void test06MultiplesAscensosDesdeSurface() {
-        compareDepths ( createSubmarineWithCommand("uuuuu"), 0, true );
+        compareDepthsState( createSubmarineWithCommand("uuuuu"), 0, true );
     }
 
     @Test
     public void test07MutiplesCambiosDeNivel() {
-        compareDepths ( createSubmarineWithCommand("dddddd uuuuu"), 1, true );
+        compareDepthsState( createSubmarineWithCommand("dddddd uuuuu"), 1, true );
     }
 
     @Test
@@ -87,7 +87,7 @@ public class Nemotest {
 
     @Test
     public void test17TirarCapsulaEnBelowSurface() {
-        compareDepths ( createSubmarineWithCommand("d m"), 1, true);
+        compareDepthsState( createSubmarineWithCommand("d m"), 1, true);
     }
 
     @Test
@@ -106,11 +106,11 @@ public class Nemotest {
     }
 
     private static void compareState( Nemo nemo,  int depth, boolean canLaunch,int xcoord, int ycoord, int xdire, int ydire) {
-        compareDepths(nemo, depth, canLaunch);
+        compareDepthsState(nemo, depth, canLaunch);
         compareCoords(nemo, xcoord, ycoord);
         compareDirections(nemo, xdire, ydire);
     }
-    private static void compareDepths( Nemo nemo, int depth, boolean canLaunch) {
+    private static void compareDepthsState(Nemo nemo, int depth, boolean canLaunch) {
         assertEquals (depth, nemo.getDepth() );
         assertEquals (canLaunch, nemo.isCapsuleLaunchable() );
     }
