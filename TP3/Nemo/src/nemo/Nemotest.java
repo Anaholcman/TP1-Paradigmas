@@ -88,7 +88,7 @@ public class Nemotest {
 
     @Test
     public void test17TirarCapsulaEnBelowSurface() {
-        compareDepthsState ( createSubmarineWithCommand("d m"), 1, true);
+        compareDepthsState( createSubmarineWithCommand("d m"), 1, true);
     }
 
     @Test
@@ -107,13 +107,13 @@ public class Nemotest {
     }
 
     private static void compareState( Nemo nemo,  int depth, boolean canLaunch,int xcoord, int ycoord, int xdire, int ydire) {
-        compareDepthsState ( nemo, depth, canLaunch);
-        compareCoords ( nemo, xcoord, ycoord);
-        compareDirections ( nemo, xdire, ydire);
+        compareDepthsState(nemo, depth, canLaunch);
+        compareCoords(nemo, xcoord, ycoord);
+        compareDirections(nemo, xdire, ydire);
     }
     private static void compareDepthsState(Nemo nemo, int depth, boolean canLaunch) {
-        assertEquals ( depth, nemo.getDepth() );
-        assertEquals ( canLaunch, nemo.isCapsuleLaunchable() );
+        assertEquals (depth, nemo.getDepth() );
+        assertEquals (canLaunch, nemo.isCapsuleLaunchable() );
     }
 
     private static void compareCoords( Nemo nemo, int xcoord, int ycoord) {
