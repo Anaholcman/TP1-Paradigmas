@@ -12,6 +12,6 @@ public abstract class Commands {
             new Avanzar(),
             new Lanzar()
     );
-    public abstract boolean isCommand(char c);
-    public abstract void execute(Nemo nemo);
+    public abstract boolean isCommand ( char c );
+    public abstract void execute ( Nemo nemo );
 }

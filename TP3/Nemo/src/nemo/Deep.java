@@ -7,6 +7,7 @@ public class Deep extends DepthNavigator {
         this.profundidad = profundidad;
         this.anterior = anterior;
     }
+
     public DepthNavigator down() {
         return new Deep( profundidad + 1 , this);
     }
