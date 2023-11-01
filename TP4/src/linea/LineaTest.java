@@ -19,7 +19,7 @@ public class LineaTest {
         Linea game = new Linea( 4, 4,'C' );
         assertTrue(game.turnoRojas());
     }
-
+//hhsap
     @Test public void testJueganLasAzules(){
         Linea game = new Linea( 4, 4,'C' );
         game.playRedkAt( 1 );
