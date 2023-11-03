@@ -3,7 +3,7 @@ package linea;
 public class Game {
     public static void main( String[] args) throws Exception {
         System.out.println( "Dimensiones?");
-        Linea game = new Linea( prompt( "Base? " ), prompt( "Altura? " ), 'C' );
+        Linea game = new Linea( prompt( "Base? " ), prompt( "Altura? " ), (char) prompt("Estrategia  ") );// check esto
         System.out.println( game.show() );
 
         while ( !game.finished() ) {

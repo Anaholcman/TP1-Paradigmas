@@ -9,25 +9,26 @@ public class Linea {
     private int base;
     private int altura;
     private char TipoDeJuego;
-    private ArrayList<List> tablero;
+    private List<List> tablero;
+
 
     public  Linea (int base, int altura, char tipoDeJuego) {
-        turno = 'R';
+        this.turno = 'R';
         this.base = base;
         this.altura = altura;
         TipoDeJuego = tipoDeJuego;
-        tablero = new ArrayList<>();
         if (altura < 4 || base < 4){
             throw new RuntimeException("No se puede hacer un tablero menor a 4");
-        }
-        for (int i = 0; i < base; i++){
-            tablero.add( new ArrayList<>(altura) );
-            for (int j = 0; j < altura; j++){
-                tablero.get(i).add('-');
+        } else {
+            this.tablero = new ArrayList<>();
+            for (int i = 0; i < base; i++){
+                this.tablero.add( new ArrayList<>() );
             }
         }
 
-
+    }
+    public void setTurno(char turno) {
+        this.turno = turno;
     }
 
     public boolean turnoRojas() {
@@ -40,14 +41,28 @@ public class Linea {
 
     public String show() {
         String tableroString = "";
-        for (int i = altura; i > 0; i--){
+        for (int i = altura -1 ; i >= 0; i--){
             for (int j = 0; j < base; j++){
-                tableroString += tablero.get(j).get(i);
+                tableroString += getFill( j, i);
             }
             tableroString += "\n";
         }
         return tableroString;
 
+    }
+
+    private String getFill(int indexCol, int indexFila) {
+        List columna = tablero.get(indexCol);
+        if (columna.size() > indexFila){
+            char espacio  = (char) columna.get(indexFila);
+            if ('R' == espacio){
+                return "R";
+            }
+            else if ((Character)'A' == columna.get(indexFila)) {
+                return "A";
+            }
+        }
+        return "-";
     }
 
     public boolean finished() {
@@ -59,7 +74,20 @@ public class Linea {
             throw  new RuntimeException("No es tu turno");
         }
         else {
-            turno = 'A';
+            if (prompt > base){
+                throw new RuntimeException("No se puede jugar en esa columna");
+            }
+            else {
+                if (tablero.get(prompt).size() == altura){
+                    throw new RuntimeException("Columna Llena");
+                }
+                else {
+                    List columna = tablero.get(prompt);
+                    columna.add('R');
+                    turno = 'A';
+                }
+
+            }
         }
     }
 
@@ -68,7 +96,20 @@ public class Linea {
             throw  new RuntimeException("No es tu turno");
         }
         else {
-            turno = 'R';
+            if (prompt > base){
+                throw new RuntimeException("No se puede jugar en esa columna");
+            }
+            else {
+                if (tablero.get(prompt).size() == altura){
+                    throw new RuntimeException("Columna Llena");
+                }
+                else{
+                    List columna = tablero.get(prompt);
+                    columna.add('A');
+                    turno = 'R';
+                }
+
+            }
         }
     }
 
