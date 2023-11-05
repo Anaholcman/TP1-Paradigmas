@@ -20,7 +20,7 @@ public class LineaTest {
         assertTrue(game.turnoRojas());
     }
 
-    @Test public void testJueganLasAzules(){
+    @Test public void testTurnoLasAzules(){
         Linea game = new Linea( 4, 4,'C' );
         game.playRedkAt( 1 );
         assertTrue(game.turnoAzules());
@@ -30,7 +30,13 @@ public class LineaTest {
     @Test public void testJueganLasRojas(){ //mal
         Linea game = new Linea( 4, 4,'C' );
         game.playRedkAt( 1 );
-        //assertTrue(game.show().equals("----\n----\n----\nR---\n"));
+        assertTrue(game.show().equals("----\n----\n----\nR---\n"));
+    }
+    @Test public void testJueganLasAzules(){
+        Linea game = new Linea( 4, 4,'C' );
+        game.playRedkAt( 1 );
+        game.playBlueAt( 1 );
+        assertTrue(game.show().equals("----\n----\nA---\nR---\n"));
     }
 
     @Test public void testQuierejugarAzulEnTurnoDeRojo() {
@@ -78,5 +84,54 @@ public class LineaTest {
         game.playBlueAt(1);
         assertThrows(RuntimeException.class, () -> game.playBlueAt(1));
     }
+    @Test public void testJuegoNoTerminado(){
+        Linea game = new Linea( 4, 4,'C' );
+        game.playRedkAt(1);
+        game.playBlueAt(1);
+        assertFalse(game.finished());
+    }
+    @Test public void testGanatipoA(){
+        Linea game = new Linea( 4, 4,'A' );
+        game.playRedkAt(1);
+        game.playBlueAt(1);
+        game.playRedkAt(2);
+        game.playBlueAt(2);
+        game.playRedkAt(3);
+        game.playBlueAt(3);
+        game.playRedkAt(4);
+        assertTrue(game.finished());
+    }
+    @Test public void testGanatipoB(){
+        Linea game = new Linea( 4, 4,'B' );
+        game.playRedkAt(1);
+        game.playBlueAt(2);
+        game.playRedkAt(3);
+        game.playBlueAt(4);
+        game.playRedkAt(2);
+        game.playBlueAt(3);
+        game.playRedkAt(3);
+        game.playBlueAt(4);
+        game.playRedkAt(4);
+        game.playBlueAt(2);
+        game.playRedkAt(4);
+        assertTrue(game.finished());
+    }
+    @Test public void testGanatipoC(){
+        Linea game = new Linea( 4, 4,'C' );
+        game.playRedkAt(1);
+        game.playBlueAt(2);
+        game.playRedkAt(3);
+        game.playBlueAt(4);
+        game.playRedkAt(2);
+        game.playBlueAt(3);
+        game.playRedkAt(3);
+        game.playBlueAt(4);
+        game.playRedkAt(4);
+        game.playBlueAt(2);
+        game.playRedkAt(4);
+        assertTrue(game.finished());
+    }
+
+
 
 }
