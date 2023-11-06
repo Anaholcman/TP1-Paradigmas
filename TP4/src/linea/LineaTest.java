@@ -8,7 +8,7 @@ public class LineaTest {
 
     @Test public void testTableroEmpiezaVacio(){
         Linea game = new Linea( 4, 4,'C' );
-        assertTrue(game.show().equals("----\n----\n----\n----\n"));
+        assertEquals("----\n----\n----\n----\n", game.show());
     }
 
     @Test public void testNoSePuedeHacer3x3(){
@@ -30,13 +30,13 @@ public class LineaTest {
     @Test public void testJueganLasRojas(){ //mal
         Linea game = new Linea( 4, 4,'C' );
         game.playRedkAt( 1 );
-        assertTrue(game.show().equals("----\n----\n----\nR---\n"));
+        assertEquals("----\n----\n----\nR---\n", game.show());
     }
     @Test public void testJueganLasAzules(){
         Linea game = new Linea( 4, 4,'C' );
         game.playRedkAt( 1 );
         game.playBlueAt( 1 );
-        assertTrue(game.show().equals("----\n----\nA---\nR---\n"));
+        assertEquals("----\n----\nA---\nR---\n", game.show());
     }
 
     @Test public void testQuierejugarAzulEnTurnoDeRojo() {
@@ -59,7 +59,7 @@ public class LineaTest {
     @Test public void testQuiereJugarRojoEnColumnaOutOfBounds(){
         Linea game = new Linea( 4, 4,'C' );
         assertThrows(RuntimeException.class, () -> game.playRedkAt( 5 ));
-        assertTrue(game.show().equals("----\n----\n----\n----\n"));
+        assertEquals("----\n----\n----\n----\n", game.show());
     }
 
     @Test public void testQuiereJugarAzulEnColumnaOutOfBounds(){ // podria borrarse
@@ -132,6 +132,37 @@ public class LineaTest {
         assertTrue(game.finished());
     }
 
+    @Test public void testTerminaElJuegoEnEmpate(){
+        Linea game = new Linea( 4, 4,'A' );
+        game.playRedkAt(1);
+        game.playBlueAt(2);
+        game.playRedkAt(3);
+        game.playBlueAt(4);
+        game.playRedkAt(4);
+        game.playBlueAt(3);
+        game.playRedkAt(2);
+        game.playBlueAt(1);
+        game.playRedkAt(4);
+        game.playBlueAt(3);
+        game.playRedkAt(2);
+        game.playBlueAt(1);
+        game.playRedkAt(1);
+        game.playBlueAt(2);
+        game.playRedkAt(3);
+        game.playBlueAt(4);
+        assertTrue(game.finished());
+    }
 
+    @Test public void testNosePuedeJugarEnJuegoTerminado(){
+        Linea game = new Linea( 4, 4,'A' );
+        game.playRedkAt(1);
+        game.playBlueAt(1);
+        game.playRedkAt(2);
+        game.playBlueAt(2);
+        game.playRedkAt(3);
+        game.playBlueAt(3);
+        game.playRedkAt(4);
+        assertThrows(RuntimeException.class, () -> game.playBlueAt(1));
+    }
 
 }
