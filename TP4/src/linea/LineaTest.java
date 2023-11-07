@@ -2,167 +2,133 @@ package linea;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LineaTest {
 
-    @Test public void testTableroEmpiezaVacio(){
-        Linea game = new Linea( 4, 4,'C' );
-        assertEquals("----\n----\n----\n----\n", game.show());
+    @Test public void test01TableroEmpiezaVacio(){
+        assertEquals("||   |   |   |   ||\n" +
+                        "||---|---|---|---||\n" +
+                        "||   |   |   |   ||\n" +
+                        "||---|---|---|---||\n" +
+                        "||   |   |   |   ||\n" +
+                        "||---|---|---|---||\n" +
+                        "||   |   |   |   ||\n" +
+                        "===1===2===3===4===\n",
+                new Linea( 4, 4,'C' ).show());
     }
 
-    @Test public void testNoSePuedeHacer3x3(){
-        assertThrows(RuntimeException.class, () -> new Linea( 3, 3,'C' ));
+    @Test public void test02EmpiezanLasRojas(){
+        assertTrue( new Linea( 4, 4,'C' ).turnoRojas() );
     }
 
-    @Test public void testEmpiezanLasRojas(){
+    @Test public void test03TurnoLasAzules(){
         Linea game = new Linea( 4, 4,'C' );
-        assertTrue(game.turnoRojas());
+        game.playRedAt( 1 );
+        assertEquals("||   |   |   |   ||\n" +
+                "||---|---|---|---||\n" +
+                "||   |   |   |   ||\n" +
+                "||---|---|---|---||\n" +
+                "||   |   |   |   ||\n" +
+                "||---|---|---|---||\n" +
+                "|| R |   |   |   ||\n" +
+                "===1===2===3===4===\n", game.show());
+        assertTrue( game.turnoAzules() );
+        assertFalse( game.turnoRojas() );
     }
 
-    @Test public void testTurnoLasAzules(){
+    @Test public void test04QuierejugarAzulEnTurnoDeRojo() {
         Linea game = new Linea( 4, 4,'C' );
-        game.playRedkAt( 1 );
-        assertTrue(game.turnoAzules());
-        assertFalse(game.turnoRojas());
+        assertTrue( game.turnoRojas() );
+        assertFalse( game.turnoAzules() );
+        assertThrows( RuntimeException.class, () -> game.playBlueAt( 1 ) );
     }
 
-    @Test public void testJueganLasRojas(){ //mal
+    @Test public void test05QuierejugarRojoEnTurnoDeAzul() {
         Linea game = new Linea( 4, 4,'C' );
-        game.playRedkAt( 1 );
-        assertEquals("----\n----\n----\nR---\n", game.show());
-    }
-    @Test public void testJueganLasAzules(){
-        Linea game = new Linea( 4, 4,'C' );
-        game.playRedkAt( 1 );
-        game.playBlueAt( 1 );
-        assertEquals("----\n----\nA---\nR---\n", game.show());
+        game.playRedAt(1);
+        assertTrue( game.turnoAzules() );
+        assertFalse( game.turnoRojas() );
+        assertThrows( RuntimeException.class, () -> game.playRedAt( 1 ));
     }
 
-    @Test public void testQuierejugarAzulEnTurnoDeRojo() {
+    @Test public void test06QuiereJugarRojoEnColumnaOutOfBounds(){
         Linea game = new Linea( 4, 4,'C' );
-        game.setTurno('R');
-        assertTrue(game.turnoRojas());
-        assertFalse(game.turnoAzules());
-        assertThrows(RuntimeException.class, () -> game.playBlueAt( 1 ));
+        assertThrows(RuntimeException.class, () -> game.playRedAt( 5 ));
+        assertEquals("||   |   |   |   ||\n" +
+                "||---|---|---|---||\n" +
+                "||   |   |   |   ||\n" +
+                "||---|---|---|---||\n" +
+                "||   |   |   |   ||\n" +
+                "||---|---|---|---||\n" +
+                "||   |   |   |   ||\n" +
+                "===1===2===3===4===\n", game.show());
     }
 
-    @Test public void testQuierejugarRojoEnTurnoDeAzul() {
-        Linea game = new Linea( 4, 4,'C' );
-        game.setTurno('R');
-        game.playRedkAt(1);
-        assertTrue(game.turnoAzules());
-        assertFalse(game.turnoRojas());
-        assertThrows(RuntimeException.class, () -> game.playRedkAt( 1 ));
+    @Test public void test07QuiereJugarRojoEnColumnaLlena(){
+        Linea game = getGame(4,4,'C', Arrays.asList(1,1,1,1));
+        assertThrows( RuntimeException.class, () -> game.playRedAt(1));
+        assertEquals("|| A |   |   |   ||\n" +
+                "||---|---|---|---||\n" +
+                "|| R |   |   |   ||\n" +
+                "||---|---|---|---||\n" +
+                "|| A |   |   |   ||\n" +
+                "||---|---|---|---||\n" +
+                "|| R |   |   |   ||\n" +
+                "===1===2===3===4===\n", game.show());
     }
 
-    @Test public void testQuiereJugarRojoEnColumnaOutOfBounds(){
-        Linea game = new Linea( 4, 4,'C' );
-        assertThrows(RuntimeException.class, () -> game.playRedkAt( 5 ));
-        assertEquals("----\n----\n----\n----\n", game.show());
+    @Test public void test08JuegoNoTerminado(){
+        assertFalse( getGame(4,4,'C', Arrays.asList(1,1))
+                .finished());
     }
 
-    @Test public void testQuiereJugarAzulEnColumnaOutOfBounds(){ // podria borrarse
-        Linea game = new Linea( 4, 4,'C' );
-        game.playRedkAt(1);
-        assertThrows(RuntimeException.class, () -> game.playBlueAt(5));
+    @Test public void test09GanatipoA(){
+        assertTrue( getGame(4,4,'A', Arrays.asList(1,1,2,2,3,3,4))
+                .finished());
     }
 
-    @Test public void testQuiereJugarRojoEnColumnaLlena(){
-        Linea game = new Linea( 4, 4,'C' );
-        game.playRedkAt(1);
-        game.playBlueAt(1);
-        game.playRedkAt(1);
-        game.playBlueAt(1);
-        assertThrows(RuntimeException.class, () -> game.playRedkAt(1));
-    }
-    @Test public void testQuiereJugarAzulEnColumnaLlena(){
-        Linea game = new Linea( 4, 4,'C' );
-        game.playRedkAt(1);
-        game.playBlueAt(1);
-        game.playRedkAt(1);
-        game.playBlueAt(1);
-        assertThrows(RuntimeException.class, () -> game.playBlueAt(1));
-    }
-    @Test public void testJuegoNoTerminado(){
-        Linea game = new Linea( 4, 4,'C' );
-        game.playRedkAt(1);
-        game.playBlueAt(1);
-        assertFalse(game.finished());
-    }
-    @Test public void testGanatipoA(){
-        Linea game = new Linea( 4, 4,'A' );
-        game.playRedkAt(1);
-        game.playBlueAt(1);
-        game.playRedkAt(2);
-        game.playBlueAt(2);
-        game.playRedkAt(3);
-        game.playBlueAt(3);
-        game.playRedkAt(4);
-        assertTrue(game.finished());
-    }
-    @Test public void testGanatipoB(){
-        Linea game = new Linea( 4, 4,'B' );
-        game.playRedkAt(1);
-        game.playBlueAt(2);
-        game.playRedkAt(3);
-        game.playBlueAt(4);
-        game.playRedkAt(2);
-        game.playBlueAt(3);
-        game.playRedkAt(3);
-        game.playBlueAt(4);
-        game.playRedkAt(4);
-        game.playBlueAt(2);
-        game.playRedkAt(4);
-        assertTrue(game.finished());
-    }
-    @Test public void testGanatipoC(){
-        Linea game = new Linea( 4, 4,'C' );
-        game.playRedkAt(1);
-        game.playBlueAt(2);
-        game.playRedkAt(3);
-        game.playBlueAt(4);
-        game.playRedkAt(2);
-        game.playBlueAt(3);
-        game.playRedkAt(3);
-        game.playBlueAt(4);
-        game.playRedkAt(4);
-        game.playBlueAt(2);
-        game.playRedkAt(4);
-        assertTrue(game.finished());
+    @Test public void test10GanatipoB(){
+        assertTrue( getGame(4,4,'C', Arrays.asList(1,2,3,4,2,3,3,4,4,2,4))
+                .finished());
     }
 
-    @Test public void testTerminaElJuegoEnEmpate(){
-        Linea game = new Linea( 4, 4,'A' );
-        game.playRedkAt(1);
-        game.playBlueAt(2);
-        game.playRedkAt(3);
-        game.playBlueAt(4);
-        game.playRedkAt(4);
-        game.playBlueAt(3);
-        game.playRedkAt(2);
-        game.playBlueAt(1);
-        game.playRedkAt(4);
-        game.playBlueAt(3);
-        game.playRedkAt(2);
-        game.playBlueAt(1);
-        game.playRedkAt(1);
-        game.playBlueAt(2);
-        game.playRedkAt(3);
-        game.playBlueAt(4);
-        assertTrue(game.finished());
+    @Test public void test11GanatipoCconLinea(){
+        assertTrue( getGame(4,4,'C', Arrays.asList(1,1,2,2,3,3,4))
+                .finished());
     }
 
-    @Test public void testNosePuedeJugarEnJuegoTerminado(){
-        Linea game = new Linea( 4, 4,'A' );
-        game.playRedkAt(1);
-        game.playBlueAt(1);
-        game.playRedkAt(2);
-        game.playBlueAt(2);
-        game.playRedkAt(3);
-        game.playBlueAt(3);
-        game.playRedkAt(4);
-        assertThrows(RuntimeException.class, () -> game.playBlueAt(1));
+    @Test public void test12GanatipoCconDiagonal(){
+        assertTrue( getGame(4,4,'C', Arrays.asList(1,2,3,4,2,3,3,4,4,2,4))
+                .finished());
     }
 
+    @Test public void test13TerminaElJuegoEnEmpate(){
+        assertTrue( getGame(4,4,'A', Arrays.asList(1,2,3,4,4,3,2,1,4,3,2,1,1,2,3,4))
+                .finished());
+    }
+
+    @Test public void test14NosePuedeJugarEnJuegoTerminado(){
+        assertThrows( RuntimeException.class,
+                () -> getGame(4,4,'A', Arrays.asList(1,1,2,3,3,4))
+                        .playBlueAt(1) );
+    }
+
+
+    private Linea getGame(int base, int altura, char juego, List<Integer> movimientos) {
+        Linea game = new Linea( base, altura,juego );
+        movimientos.forEach(m -> playAt( game, m ) );
+        return game;
+    }
+
+    private void playAt(Linea game, Integer m) {
+        if (game.turnoRojas()){
+            game.playRedAt(m);
+        } else {
+            game.playBlueAt(m);
+        }
+    }
 }

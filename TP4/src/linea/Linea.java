@@ -3,6 +3,7 @@ package linea;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Linea {
 
@@ -19,7 +20,7 @@ public class Linea {
     private List<Integer> ultimo;
     private List<List<Character>> tablero;
 
-    public  Linea (int base, int altura, char tipoDeJuego) {
+    public Linea(int base, int altura, char tipoDeJuego) {
         this.turno = 'R';
         this.columnas = base;
         this.filas = altura;
@@ -35,9 +36,6 @@ public class Linea {
         }
     }
 
-    public void setTurno(char turno) {
-        this.turno = turno;
-    }
     public boolean turnoRojas() {
         return turno == 'R';
     }
@@ -45,52 +43,33 @@ public class Linea {
         return turno == 'A';
     }
 
-    public String show() {
+    public String show(){
         StringBuilder tableroString = new StringBuilder();
-        for (int i = filas -1; i >= 0; i--){
-            for (int j = 0; j < columnas; j++){
-                tableroString.append(getFill(j, i));
-            }
-            tableroString.append("\n");
-        }
+        IntStream.iterate(filas -1 , i -> i - 1).limit(filas)
+                .forEach(fila -> {
+                    tableroString.append("||");
+                    tablero.forEach( col -> tableroString.append(" ").append(getFill(tablero.indexOf(col), fila)).append(" |") );
+                    tableroString.append("|\n||").append(("---|").repeat(columnas)).append("|\n");
+                });
+        StringBuilder a = new StringBuilder();
+        IntStream.range(1, columnas + 1)
+                .forEach(i -> a.append("===").append(i));
+        a.append("===");
+        tableroString.replace(tableroString.length()-(columnas*4+4), tableroString.length()-1, a.toString());
         return tableroString.toString();
     }
 
-    private String getFill(int indexCol, int indexFila) {
-        if  (indexCol < columnas && indexFila < filas && indexCol >= 0 && indexFila >= 0) {
-            List<Character> columna = tablero.get(indexCol);
-            if (columna.size() > indexFila) {
-                char espacio = columna.get(indexFila);
-                if ('R' == espacio) {
-                    return "R";
-                } else if ((Character) 'A' == columna.get(indexFila)) {
-                    return "A";
-                }
+    private Character getFill(int indexCol, int indexFila) {
+        if (indexCol < columnas && indexCol >= 0) {
+            if (tablero.get(indexCol).size() > indexFila && indexFila >= 0) {
+                return tablero.get(indexCol).get(indexFila);
             }
         }
-        return "-";
+        return ' ';
     }
 
-    public boolean finished() {
-        if (turno == 'T') {
-            return true;
-        } else if (ultimo.isEmpty()) {
-            return false;
-        } else if ( tablero.stream().reduce(true,(sub, list) -> sub && list.size() == filas, (a, b) -> a && b)) {
-            return true;
-        } else {
-            if (TipoDeJuego == 'A') {
-                return finishedA();
-            } else if (TipoDeJuego == 'B') {
-                return finishedB();
-            } else if (TipoDeJuego == 'C') {
-                return finishedA() || finishedB();
-            }
-        }
-        throw new RuntimeException(TIPODEJUEGONOVALIDO);
-    }
 
-    public void playRedkAt ( int prompt){
+    public void playRedAt ( int prompt){
         if (turno == 'A') {
             throw new RuntimeException(NOESTUTURNO);
         } else if (turno == 'T') {
@@ -139,8 +118,27 @@ public class Linea {
         }
     }
 
+    public boolean finished() {
+        if (turno == 'T') {
+            return true;
+        } else if (ultimo.isEmpty()) {
+            return false;
+        } else if ( tablero.stream().reduce(true,(sub, list) -> sub && list.size() == filas, (a, b) -> a && b)) {
+            return true;
+        } else {
+            if (TipoDeJuego == 'A') {
+                return finishedA();
+            } else if (TipoDeJuego == 'B') {
+                return finishedB();
+            } else if (TipoDeJuego == 'C') {
+                return finishedA() || finishedB();
+            }
+        }
+        throw new RuntimeException(TIPODEJUEGONOVALIDO);
+    }
+
     private boolean finishedA () {
-        String ganador = getFill(ultimo.get(0), ultimo.get(1));
+        Character ganador = getFill(ultimo.get(0), ultimo.get(1));
         for (int i = ultimo.get(0) - 3; i < ultimo.get(0); i++) {
             if (i >= 0 && i < columnas) {
                 if (getFill(i, ultimo.get(1)).equals(ganador) &&
@@ -165,21 +163,7 @@ public class Linea {
     }
 
     private boolean finishedB () {
-        String ganador = getFill(ultimo.get(0), ultimo.get(1));
-//        for (int i = 0; i < 4; i++) {
-//            if (getFill(ultimo.get(0) - 3 + i, ultimo.get(1) - 3 + i).equals(ganador) &&
-//                    getFill(ultimo.get(0) - 2 + i, ultimo.get(1) - 2 + i).equals(ganador) &&
-//                    getFill(ultimo.get(0) - 1 + i, ultimo.get(1) - 1 + i).equals(ganador) &&
-//                    getFill(ultimo.get(0) + i, ultimo.get(1) + i).equals(ganador)) {
-//                return true;
-//            }
-//            if (getFill(ultimo.get(0) + 3 + i, ultimo.get(1) - 3 + i).equals(ganador) &&
-//                    getFill(ultimo.get(0) + 2 + i, ultimo.get(1) - 2 + i).equals(ganador) &&
-//                    getFill(ultimo.get(0) + 1 + i, ultimo.get(1) - 1 + i).equals(ganador) &&
-//                    getFill(ultimo.get(0) + i, ultimo.get(1) + i).equals(ganador)) {
-//                return true;
-//            }
-//        }
+        Character ganador = getFill(ultimo.get(0), ultimo.get(1));
         for (int i = ultimo.get(0), j = ultimo.get(1); i < ultimo.get(0)+4 && j < ultimo.get(1)+4; i++, j++) {
             if (getFill(i - 3, j - 3).equals(ganador) &&
                     getFill(i - 2, j - 2).equals(ganador) &&
@@ -197,36 +181,3 @@ public class Linea {
         return false;
     }
 }
-
-/*
-int i = 0; i < 4; i++
-
- if 1 (
- getFill(ultimo.get(0) - 3 + i, ultimo.get(1) - 3 + i).equals(ganador) &&
- getFill(ultimo.get(0) - 2 + i, ultimo.get(1) - 2 + i).equals(ganador) &&
- getFill(ultimo.get(0) - 1 + i, ultimo.get(1) - 1 + i).equals(ganador) &&
- getFill(ultimo.get(0) + i, ultimo.get(1) + i).equals(ganador)) {
-
- if 2 (
- getFill(ultimo.get(0) + 3 + i, ultimo.get(1) - 3 + i).equals(ganador) &&
- getFill(ultimo.get(0) + 2 + i, ultimo.get(1) - 2 + i).equals(ganador) &&
- getFill(ultimo.get(0) + 1 + i, ultimo.get(1) - 1 + i).equals(ganador) &&
- getFill(ultimo.get(0) + i, ultimo.get(1) + i).equals(ganador)) {
-
-
-i = ultimo.get(0), +1, +2, +3 , j = ultimo.get(1) -3, -2, -1, 0
-
- if 1 (
-( i -3, j )
-( i -2, j + 1)
-( i -1, j + 2)
-( i , j + 3)
-
- if 2 (
-( i + 3, j )
-( i + 2, j + 1)
-( i + 1, j + 2)
-( i    , j + 3)
-
-
- */

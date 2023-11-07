@@ -15,10 +15,10 @@ Es requisito cumplir con todos los criterios vistos a lo largo de la cursada.
 Se ofrece una pequeña interfaz de línea de comandos para correr por consola:
 Debe respetarse el protocolo definido para Linea, el constructor y los mensajes playBlueAt, playRedAt, finished y show.
 
-Para compilar el código ejecutar fuera del paquete linea lo siguiente:
+Para compilar el código ejecutar fuera del paquete linea1 lo siguiente:
 
- javac linea/Linea.java linea/Game.java
+ javac linea1/Linea.java linea1/Game.java
 
  Para correr el juego ejecutar los siguiente:
 
- java linea.Game
+ java linea1.Game

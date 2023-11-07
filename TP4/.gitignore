@@ -5,7 +5,7 @@
 **/.idea/
 **/*.iml
 **/xml.iml
-
+**/*.class
 
 ### Eclipse ###
 .apt_generated
