@@ -11,16 +11,14 @@ public class LineaTest {
 
     @Test public void test01TableroEmpiezaVacio(){
         assertEquals(new Linea( 4, 4,'C' ).tablero.stream().mapToInt(List::size).sum(), 0);
-        assertEquals("""
-                        ||   |   |   |   ||
-                        ||---|---|---|---||
-                        ||   |   |   |   ||
-                        ||---|---|---|---||
-                        ||   |   |   |   ||
-                        ||---|---|---|---||
-                        ||   |   |   |   ||
-                        ===1===2===3===4===
-                        """,
+        assertEquals("||   |   |   |   ||\n" +
+                     "||---|---|---|---||\n" +
+                     "||   |   |   |   ||\n" +
+                     "||---|---|---|---||\n" +
+                     "||   |   |   |   ||\n" +
+                     "||---|---|---|---||\n" +
+                     "||   |   |   |   ||\n" +
+                     "===1===2===3===4===\n",
                 new Linea( 4, 4,'C' ).show());
     }
 
@@ -32,16 +30,14 @@ public class LineaTest {
         Linea game = new Linea( 4, 4,'C' );
         game.playRedAt( 1 );
         assertEquals(game.getFill(0,0),'0');
-        assertEquals("""
-                ||   |   |   |   ||
-                ||---|---|---|---||
-                ||   |   |   |   ||
-                ||---|---|---|---||
-                ||   |   |   |   ||
-                ||---|---|---|---||
-                || 0 |   |   |   ||
-                ===1===2===3===4===
-                """, game.show());
+        assertEquals("||   |   |   |   ||\n" +
+                     "||---|---|---|---||\n" +
+                     "||   |   |   |   ||\n" +
+                     "||---|---|---|---||\n" +
+                     "||   |   |   |   ||\n" +
+                     "||---|---|---|---||\n" +
+                     "|| 0 |   |   |   ||\n" +
+                     "===1===2===3===4===\n", game.show());
         assertTrue( game.turnoAzules() );
         assertFalse( game.turnoRojas() );
     }
