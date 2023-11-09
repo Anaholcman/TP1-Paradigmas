@@ -1,13 +1,17 @@
 package linea2;
 
-public class TurnoRed extends Estado {
+public class TurnoRed extends GameInProgress {
+
+    public TurnoRed(){
+        super('0');
+    }
     public boolean turnoRojas() {
         return true;
     }
-    public Estado change() {
-//        if (linea.comprobarTerminado('R',donde)){
-//            return new Terminado();
-//        }
+    public boolean turnoAzules() {
+        return false;
+    }
+    public GameInProgress change() {
         return new TurnoAzul();
     }
     public void playRedAt(int prompt, Linea linea) {
@@ -16,5 +20,7 @@ public class TurnoRed extends Estado {
     public void playBlueAt(int prompt, Linea linea) {
         throw new RuntimeException(Linea.NOESTUTURNO);
     }
-
+    public String TurnoActual() {
+        return "Rojo";
+    }
 }

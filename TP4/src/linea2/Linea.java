@@ -15,7 +15,9 @@ public class Linea {
     private int filas;
     public List<List<Character>> tablero;
     private Estrategia TipoDeJuego;
-    private Estado turno;
+    private GameInProgress turno;
+    private Estado estadoActual;
+    private String ganador;
 
     public  Linea (int base, int altura, char tipoDeJuego) {
         this.turno = new TurnoRed();
@@ -36,7 +38,7 @@ public class Linea {
         return turno.turnoAzules();
     }
     public boolean finished() {
-        return turno.finished();
+        return estadoActual.finished();
     }
 
     public void playRedAt(int prompt ){
@@ -59,7 +61,8 @@ public class Linea {
 
     public boolean comprobarTerminado(int donde) {
         if (empate() || TipoDeJuego.finished(this, donde)){
-            this.turno = new Terminado();
+            this.estadoActual = new GameOver();
+            this.ganador = estadoActual.TurnoActual();
             return true;
         }
         return false;
@@ -125,5 +128,9 @@ public class Linea {
             }
         }
         return ' ';
+    }
+
+    public String ganador() {
+        return ganador;
     }
 }
