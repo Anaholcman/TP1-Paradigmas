@@ -1,13 +1,21 @@
-package linea2;
+package linea;
 
 public class TurnoRed extends Estado {
+    public String estadoActual(Linea game){
+        return "Playing Red";
+    }
+    public char ficha() {
+        return '0';
+    }
+    public String quienJuega() {
+        return "Rojo";
+    }
+
     public boolean turnoRojas() {
         return true;
     }
+
     public Estado change() {
-//        if (linea.comprobarTerminado('R',donde)){
-//            return new Terminado();
-//        }
         return new TurnoAzul();
     }
     public void playRedAt(int prompt, Linea linea) {
@@ -15,14 +23,6 @@ public class TurnoRed extends Estado {
     }
     public void playBlueAt(int prompt, Linea linea) {
         throw new RuntimeException(Linea.NOESTUTURNO);
-    }
-
-    public String estadoActual(Linea game){
-        return "Playing Red";
-    }
-
-    public char ficha() {
-        return '0';
     }
 
 }

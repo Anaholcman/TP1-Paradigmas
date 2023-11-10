@@ -1,13 +1,21 @@
-package linea2;
+package linea;
 
 public class Terminado extends Estado {
-
-    public String ultimoTurno;
-    public Estado change() {
-        return this;
+    public char ficha() {
+        return ' ';
     }
+    public String quienJuega() {
+        return null;
+    }
+    public String estadoActual(Linea game){
+        return "Juego terminado \n El ganador es " + game.ganador();
+    }
+
     public boolean finished() {
         return true;
+    }
+    public Estado change() {
+        return this;
     }
     public void playRedAt(int prompt, Linea linea) {
         throw new RuntimeException(Linea.JUEGOTERMINADO);
@@ -15,18 +23,4 @@ public class Terminado extends Estado {
     public void playBlueAt(int prompt, Linea linea) {
         throw new RuntimeException(Linea.JUEGOTERMINADO);
     }
-
-
-
-
-    public String estadoActual(Linea game){
-        if (game.empate()){
-            return "Juego terminado \n Empate";
-        }
-        else{
-            return "Juego terminado \n El ganador es " + game.ganador();
-        }
-    }
-
-
 }

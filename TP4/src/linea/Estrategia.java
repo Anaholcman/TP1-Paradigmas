@@ -1,4 +1,4 @@
-package linea2;
+package linea;
 
 import java.util.Arrays;
 import java.util.List;

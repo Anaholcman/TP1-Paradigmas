@@ -1,4 +1,4 @@
-package linea2;
+package linea;
 
 public class TipoA extends Estrategia {
     public boolean isChar(char letra) {
