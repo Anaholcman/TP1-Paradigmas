@@ -35,7 +35,7 @@ public class LineaTest {
     @Test public void test03TurnoLasAzules(){
         Linea game = new Linea( 4, 4,'C' );
         game.playRedAt( 1 );
-        assertEquals(game.getFill(0,0),'0');
+        assertEquals(game.obtenerFicha(0,0),'0');
         assertEquals("||   |   |   |   ||\n" +
                      "||---|---|---|---||\n" +
                      "||   |   |   |   ||\n" +
@@ -64,7 +64,7 @@ public class LineaTest {
     @Test public void test06QuiereJugarEnColumnaOutOfBounds(){
         Linea game = new Linea( 4, 4,'C' );
         assertThrowsLike( () -> game.playRedAt( 5 ), Linea.COLUMNANOFACTIBLE);
-        assertEquals(game.getFill(0,0),' ');
+        assertEquals(game.obtenerFicha(0,0),' ');
     }
 
     @Test public void test07QuiereJugarEnColumnaLlena(){

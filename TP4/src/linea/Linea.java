@@ -6,10 +6,10 @@ import java.util.stream.IntStream;
 
 public class Linea {
 
-    public static final String NOESTUTURNO = "No es tu turno";
-    public static final String JUEGOTERMINADO = "El juego ya termino";
-    public static final String COLUMNANOFACTIBLE = "No se puede jugar en esa columna";
-    public static final String COLUMNALLENA = "Columna Llena";
+    public static String NOESTUTURNO = "No es tu turno";
+    public static String JUEGOTERMINADO = "El juego ya termino";
+    public static String COLUMNANOFACTIBLE = "No se puede jugar en esa columna";
+    public static String COLUMNALLENA = "Columna Llena";
 
     private int columnas;
     private int filas;
@@ -76,17 +76,17 @@ public class Linea {
 
     public boolean TerminadoPorLinea ( int donde) {
         Integer indexFila = tablero.get(donde).size() - 1;
-        char quien = getFill(donde, indexFila);
+        char quien = obtenerFicha(donde, indexFila);
 
         boolean boolfila = IntStream.iterate(donde - 3, i -> i + 1).limit(4)
                 .mapToObj(col -> IntStream.range(0, 4)
-                                .map( i -> getFill(col + i, indexFila))
+                                .map( i -> obtenerFicha(col + i, indexFila))
                                 .allMatch( c -> c == quien))
                 .anyMatch(b -> b == true);
 
         boolean boolcol = IntStream.iterate(indexFila - 3, i -> i + 1).limit(4)
                 .mapToObj(fila -> IntStream.range(0, 4)
-                                .map( i -> getFill(donde, fila + i))
+                                .map( i -> obtenerFicha(donde, fila + i))
                                 .allMatch( c -> c == quien))
                 .anyMatch(b -> b == true);
 
@@ -99,31 +99,43 @@ public class Linea {
 
     private boolean isBoolDiagonal(int donde, int num) {
         Integer indexFila = tablero.get(donde).size() - 1;
-        char quien = getFill(donde, indexFila);
+        char quien = obtenerFicha(donde, indexFila);
         return IntStream.range(0, 4)
                 .mapToObj(i -> IntStream.range(0, 4)
-                        .map(j -> getFill(donde + i + j* num, indexFila + i - j))
+                        .map(j -> obtenerFicha(donde + i + j * num, indexFila + i - j))
                         .allMatch(c -> c == quien))
                 .anyMatch(b -> b == true);
     }
 
     public String show(){
         StringBuilder tableroString = new StringBuilder();
+        String separador = "|\n||" +  "---|".repeat(columnas) + "|\n";
+
         IntStream.iterate(filas - 1 , i -> i - 1).limit(filas)
             .forEach(fila -> {
                 tableroString.append("||");
-                tablero.forEach( col -> tableroString.append(" ").append(getFill(tablero.indexOf(col), fila)).append(" |") );
-                tableroString.append("|\n||").append(("---|").repeat(columnas)).append("|\n");
+                tablero.forEach( col -> tableroString
+                        .append( " " +
+                                 obtenerFicha(tablero.indexOf(col), fila) +
+                                 " |") );
+                tableroString.append( separador );
             });
-        StringBuilder a = new StringBuilder();
+
+        StringBuilder baseDelTablero = new StringBuilder();
         IntStream.range(1, columnas + 1)
-                .forEach(i -> a.append("===").append(i));
-        a.append("===");
-        tableroString.replace(tableroString.length()-(columnas*4+4), tableroString.length()-1, a.toString());
+                .forEach(i -> baseDelTablero.append("===").append(i)
+                );
+        baseDelTablero.append("===");
+
+        tableroString.replace(tableroString.length() - ( separador.length() - 2 ),
+                tableroString.length() -1 ,
+                baseDelTablero.toString()
+        );
+
         return tableroString.toString() + stateOftheGame.estadoActual(this);
     }
 
-    public Character getFill(int indexCol, int indexFila) {
+    public Character obtenerFicha(int indexCol, int indexFila) {
         if (indexCol < columnas && indexCol >= 0) {
             if (tablero.get(indexCol).size() > indexFila && indexFila >= 0) {
                 return tablero.get(indexCol).get(indexFila);
