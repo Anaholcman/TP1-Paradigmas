@@ -11,10 +11,18 @@ public class TurnoRed extends Estado {
         return new TurnoAzul();
     }
     public void playRedAt(int prompt, Linea linea) {
-        linea.playAt('0', prompt);
+        linea.playAt( prompt);
     }
     public void playBlueAt(int prompt, Linea linea) {
         throw new RuntimeException(Linea.NOESTUTURNO);
+    }
+
+    public String estadoActual(Linea game){
+        return "Playing Red";
+    }
+
+    public char ficha() {
+        return '0';
     }
 
 }

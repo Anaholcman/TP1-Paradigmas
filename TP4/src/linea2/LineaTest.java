@@ -18,7 +18,8 @@ public class LineaTest {
                      "||   |   |   |   ||\n" +
                      "||---|---|---|---||\n" +
                      "||   |   |   |   ||\n" +
-                     "===1===2===3===4===\n",
+                     "===1===2===3===4===\n" +
+                     "Playing Red",
                 new Linea( 4, 4,'C' ).show());
     }
 
@@ -37,7 +38,8 @@ public class LineaTest {
                      "||   |   |   |   ||\n" +
                      "||---|---|---|---||\n" +
                      "|| 0 |   |   |   ||\n" +
-                     "===1===2===3===4===\n", game.show());
+                     "===1===2===3===4===\n" +
+                     "Playing Blue", game.show());
         assertTrue( game.turnoAzules() );
         assertFalse( game.turnoRojas() );
     }
@@ -123,6 +125,14 @@ public class LineaTest {
         assertThrows( RuntimeException.class,
                 () -> getGame(4,4,'A', Arrays.asList(1,1,2,3,3,4))
                         .playBlueAt(1) );
+    }
+
+    @Test public void test15GanadorTipoA(){
+        assertEquals("El ganador es Rojo", getGame(4,4,'A', Arrays.asList(1,1,2,2,3,3,4)).ganador());
+    }
+
+    @Test public void tableroConGrandesDimensiones(){
+        //7x8 se imprime bien
     }
 
 

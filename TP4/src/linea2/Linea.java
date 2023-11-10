@@ -15,10 +15,12 @@ public class Linea {
     private int filas;
     public List<List<Character>> tablero;
     private Estrategia TipoDeJuego;
-    private Estado turno;
+    private Estado stateOftheGame;
+    private String jugadorActual;
+    private String ganador;
 
     public  Linea (int base, int altura, char tipoDeJuego) {
-        this.turno = new TurnoRed();
+        this.stateOftheGame = new TurnoRed();
         this.columnas = base;
         this.filas = altura;
         this.tablero = new ArrayList<>();
@@ -30,36 +32,38 @@ public class Linea {
     }
 
     public boolean turnoRojas() {
-        return turno.turnoRojas();
+        return stateOftheGame.turnoRojas();
     }
     public boolean turnoAzules() {
-        return turno.turnoAzules();
+        return stateOftheGame.turnoAzules();
     }
     public boolean finished() {
-        return turno.finished();
+        return stateOftheGame.finished();
     }
 
     public void playRedAt(int prompt ){
-        turno.playRedAt(prompt, this);
+        stateOftheGame.playRedAt(prompt, this);
     }
     public void playBlueAt ( int prompt ){
-        turno.playBlueAt(prompt, this);
+        stateOftheGame.playBlueAt(prompt, this);
     }
-    public void playAt(char quien, int donde) {
+    public void playAt(int donde) {
         if (donde > columnas) {
             throw new RuntimeException(COLUMNANOFACTIBLE);
         } else if (tablero.get(donde - 1).size() == filas) {
             throw new RuntimeException(COLUMNALLENA);
         } else {
-            tablero.get(donde - 1).add(quien);
-            this.turno = turno.change();
+            tablero.get(donde - 1).add(stateOftheGame.ficha());
+            this.stateOftheGame = stateOftheGame.change();
+            jugadorActual = stateOftheGame.quienJuega();
             comprobarTerminado(donde - 1);
         }
     }
 
     public boolean comprobarTerminado(int donde) {
         if (empate() || TipoDeJuego.finished(this, donde)){
-            this.turno = new Terminado();
+            this.stateOftheGame = new Terminado();
+            jugadorActual = ganador;
             return true;
         }
         return false;
@@ -115,7 +119,7 @@ public class Linea {
                 .forEach(i -> a.append("===").append(i));
         a.append("===");
         tableroString.replace(tableroString.length()-(columnas*4+4), tableroString.length()-1, a.toString());
-        return tableroString.toString();
+        return tableroString.toString() + stateOftheGame.estadoActual(this);
     }
 
     public Character getFill(int indexCol, int indexFila) {
@@ -125,5 +129,9 @@ public class Linea {
             }
         }
         return ' ';
+    }
+
+    public String ganador() {
+        return ganador;
     }
 }
