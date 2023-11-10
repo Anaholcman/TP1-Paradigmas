@@ -1,8 +1,6 @@
 package linea2;
 
-public class GameOver extends Estado {
-
-    private String ultimoJugador;
+public class Terminado extends Estado {
     public Estado change() {
         return this;
     }
@@ -15,11 +13,4 @@ public class GameOver extends Estado {
     public void playBlueAt(int prompt, Linea linea) {
         throw new RuntimeException(Linea.JUEGOTERMINADO);
     }
-
-    @Override
-    public String TurnoActual() {
-        return ultimoJugador;
-    } // quiero que devuelva el ganador
-
-
 }

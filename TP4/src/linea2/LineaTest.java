@@ -124,39 +124,6 @@ public class LineaTest {
                 () -> getGame(4,4,'A', Arrays.asList(1,1,2,3,3,4))
                         .playBlueAt(1) );
     }
-    @Test public void tableroConGrandesDimensiones(){
-        assertEquals(new Linea( 8, 7,'C' ).tablero.stream().mapToInt(List::size).sum(), 0);
-        assertEquals("||   |   |   |   |   |   |   |   ||\n" +
-                     "||---|---|---|---|---|---|---|---||\n" +
-                     "||   |   |   |   |   |   |   |   ||\n" +
-                     "||---|---|---|---|---|---|---|---||\n" +
-                     "||   |   |   |   |   |   |   |   ||\n" +
-                     "||---|---|---|---|---|---|---|---||\n" +
-                     "||   |   |   |   |   |   |   |   ||\n" +
-                     "||---|---|---|---|---|---|---|---||\n" +
-                     "||   |   |   |   |   |   |   |   ||\n" +
-                     "||---|---|---|---|---|---|---|---||\n" +
-                     "||   |   |   |   |   |   |   |   ||\n" +
-                     "||---|---|---|---|---|---|---|---||\n" +
-                     "||   |   |   |   |   |   |   |   ||\n" +
-                     "===1===2===3===4===5===6===7===8===\n",
-                new Linea( 8, 7,'C' ).show());
-    }
-
-   @Test public void ganadorRojoimprimeRojo(){
-        assertEquals("Rojas", getGame(4,4,'B', Arrays.asList(1,2,3,4,2,3,3,4,4,2,4))
-                .ganador());
-    }
-
-
-    @Test public void getFilledSeHaceCorrectamente(){
-        Linea game = new Linea( 4, 4,'C' );
-        game.playRedAt(1);
-        assertEquals(game.getFill(0,0),'0');
-    }
-
-
-
 
 
     private Linea getGame(int base, int altura, char juego, List<Integer> movimientos) {

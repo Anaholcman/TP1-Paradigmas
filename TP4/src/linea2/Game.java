@@ -16,9 +16,7 @@ public class Game {
                 System.out.println( game.show() );
             }
         }
-        System.out.println("Ganan las " + game.ganador());
         System.out.println("Juego terminado");
-
     }
     private static int promptAsInt( String message ) {
         System.out.print( message );

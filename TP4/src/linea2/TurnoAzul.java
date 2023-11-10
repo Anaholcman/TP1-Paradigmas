@@ -1,20 +1,10 @@
 package linea2;
 
-public class TurnoAzul extends GameInProgress {
-
-    public TurnoAzul() {
-        super('X');
-    }
-
-    @Override
-    public boolean turnoRojas() {
-        return false;
-    }
-
+public class TurnoAzul extends Estado {
     public boolean turnoAzules() {
         return true;
     }
-    public GameInProgress change() { //
+    public Estado change() {
 //        if (linea.comprobarTerminado('A',donde)){
 //            return new Terminado();
 //        }
@@ -25,9 +15,6 @@ public class TurnoAzul extends GameInProgress {
     }
     public void playBlueAt(int prompt, Linea linea) {
         linea.playAt('X', prompt);
-    }
-    public String TurnoActual() {
-        return "Azul";
     }
 
 }
