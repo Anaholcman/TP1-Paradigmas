@@ -27,9 +27,8 @@ public class Linea {
         this.tablero = new ArrayList<>();
         IntStream.range(0, base)
                 .forEach(i -> tablero.add(new ArrayList<>()));
-        Estrategia.estrategias.stream()
-                .filter(estrategia -> estrategia.isChar(tipoDeJuego))
-                .forEach(estrategia -> TipoDeJuego = estrategia);
+
+        this.TipoDeJuego = Estrategia.getEstrategia(tipoDeJuego);
     }
 
     public boolean turnoRojas() {

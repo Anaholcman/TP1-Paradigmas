@@ -134,6 +134,10 @@ public class LineaTest {
 
     }
 
+    @Test public void test20estrategiaNoValida(){
+        assertThrowsLike( () -> new Linea(4,4,'D'),
+                "La estrategia no es válida. Debe ser A, B o C." );
+    }
 
 
 
